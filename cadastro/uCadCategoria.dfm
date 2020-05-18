@@ -3,7 +3,16 @@ inherited frmCadCategoria: TfrmCadCategoria
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
+    ExplicitWidth = 734
+    ExplicitHeight = 403
     inherited tabListagem: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 726
+      ExplicitHeight = 375
+      inherited pnlListagemTopo: TPanel
+        ExplicitWidth = 726
+      end
       inherited grdListagem: TDBGrid
         Columns = <
           item
@@ -21,10 +30,16 @@ inherited frmCadCategoria: TfrmCadCategoria
       end
     end
     inherited tabManutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 726
       ExplicitHeight = 375
     end
   end
   inherited pnlRodape: TPanel
+    inherited btnFechar: TBitBtn
+      ExplicitLeft = 643
+    end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()
     end

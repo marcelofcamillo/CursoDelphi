@@ -26,12 +26,8 @@ object frmTelaHeranca: TfrmTelaHeranca
     ActivePage = tabListagem
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 795
-    ExplicitHeight = 405
     object tabListagem: TTabSheet
       Caption = 'Listagem'
-      ExplicitWidth = 787
-      ExplicitHeight = 377
       object pnlListagemTopo: TPanel
         Left = 0
         Top = 0
@@ -39,7 +35,6 @@ object frmTelaHeranca: TfrmTelaHeranca
         Height = 59
         Align = alTop
         TabOrder = 0
-        ExplicitWidth = 787
         object lblIndice: TLabel
           Left = 12
           Top = 8
@@ -55,6 +50,7 @@ object frmTelaHeranca: TfrmTelaHeranca
         Height = 316
         Align = alClient
         DataSource = dtsListagem
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -67,8 +63,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     object tabManutencao: TTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitWidth = 787
-      ExplicitHeight = 377
     end
   end
   object pnlRodape: TPanel
@@ -78,8 +72,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     Height = 45
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 398
-    ExplicitWidth = 795
     DesignSize = (
       734
       45)
@@ -137,7 +129,6 @@ object frmTelaHeranca: TfrmTelaHeranca
       Caption = '&Fechar'
       TabOrder = 5
       OnClick = btnFecharClick
-      ExplicitLeft = 704
     end
     object btnNavigator: TDBNavigator
       Left = 448
@@ -157,6 +148,7 @@ object frmTelaHeranca: TfrmTelaHeranca
     TabOrder = 2
     Text = ''
     TextHint = 'Digite sua pesquisa...'
+    OnChange = mskPesquisarChange
   end
   object btnPesquisar: TBitBtn
     Left = 295
@@ -165,6 +157,7 @@ object frmTelaHeranca: TfrmTelaHeranca
     Height = 25
     Caption = '&Pesquisar'
     TabOrder = 3
+    Visible = False
   end
   object qryListagem: TZQuery
     Connection = dtmPrincipal.ConexaoDB

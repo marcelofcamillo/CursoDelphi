@@ -38,6 +38,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure grdListagemTitleClick(Column: TColumn);
+    procedure mskPesquisarChange(Sender: TObject);
   private
     { Private declarations }
     EstadoDoCadastro: TEstadoDoCadastro;
@@ -46,6 +47,7 @@ type
               btnApagar: TBitBtn; navegador: TDBNavigator; pgcPrincipal: TPageControl; flag: Boolean);
     procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: Integer);
     function RetornarCampoTraduzido(Campo: String): String;
+    procedure ExibirLabelIndice(campo: String; aLabel: TLabel);
   public
     { Public declarations }
     IndiceAtual: String;
@@ -91,6 +93,11 @@ begin
   end;
 end;
 {$endregion}
+
+procedure TfrmTelaHeranca.ExibirLabelIndice(campo: String; aLabel: TLabel);
+begin
+  aLabel.Caption := RetornarCampoTraduzido(campo);
+end;
 
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
 begin
@@ -151,12 +158,17 @@ begin
   qryListagem.Connection := dtmPrincipal.ConexaoDB;
   dtsListagem.DataSet    := qryListagem;
   grdListagem.DataSource := dtsListagem;
+  grdListagem.Options := [dgTitles, dgIndicator, dgColumnResize, dgColLines,
+                          dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection,
+                          dgCancelOnExit, dgTitleClick, dgTitleHotTrack];
 end;
 
 procedure TfrmTelaHeranca.FormShow(Sender: TObject);
 begin
   // verifica se a consulta SQL está vazia ou não
   if (qryListagem.SQL.Text <> EmptyStr) then begin
+    qryListagem.IndexFieldNames := IndiceAtual;
+    ExibirLabelIndice(IndiceAtual, lblIndice);
     qryListagem.Open; // abre a consulta
   end;
 end;
@@ -166,6 +178,11 @@ procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
 begin
   IndiceAtual := Column.FieldName;
   qryListagem.IndexFieldNames := IndiceAtual;
-  lblIndice.Caption := RetornarCampoTraduzido(IndiceAtual);
+  ExibirLabelIndice(IndiceAtual, lblIndice);
 end;
+procedure TfrmTelaHeranca.mskPesquisarChange(Sender: TObject);
+begin
+  qryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text, [loPartialKey]);
+end;
+
 end.
