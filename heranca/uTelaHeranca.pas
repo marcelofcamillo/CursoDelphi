@@ -27,6 +27,7 @@ type
     btnNavigator: TDBNavigator;
     qryListagem: TZQuery;
     dtsListagem: TDataSource;
+    lblIndice: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -34,6 +35,9 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure btnApagarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure grdListagemTitleClick(Column: TColumn);
   private
     { Private declarations }
     EstadoDoCadastro: TEstadoDoCadastro;
@@ -121,12 +125,32 @@ begin
   EstadoDoCadastro := ecInserir;
 end;
 
+procedure TfrmTelaHeranca.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  qryListagem.Close; // fecha a consulta
+end;
+
 procedure TfrmTelaHeranca.FormCreate(Sender: TObject);
 begin
   // garante que será setado quando o formulário for criado em tempo de execução
   qryListagem.Connection := dtmPrincipal.ConexaoDB;
-  dtsListagem.DataSet := qryListagem;
+  dtsListagem.DataSet    := qryListagem;
   grdListagem.DataSource := dtsListagem;
+end;
+
+procedure TfrmTelaHeranca.FormShow(Sender: TObject);
+begin
+  // verifica se a consulta SQL está vazia ou não
+  if (qryListagem.SQL.Text <> EmptyStr) then begin
+    qryListagem.Open; // abre a consulta
+  end;
+end;
+
+
+procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
+begin
+  // pega o campo do grid que foi clicado
+  ShowMessage(Column.FieldName);
 end;
 
 end.
