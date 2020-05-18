@@ -13,6 +13,7 @@ object frmPrincipal: TfrmPrincipal
   Menu = mainPrincipal
   OldCreateOrder = False
   WindowState = wsMaximized
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
