@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao;
 
 type
   TfrmPrincipal = class(TForm)
@@ -25,6 +25,7 @@ type
     N4: TMenuItem;
     Vendapordata1: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,6 +38,22 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+  dtmPrincipal := TdtmPrincipal.Create(Self); // cria o formulário
+  with dtmPrincipal.ConexaoDB do begin
+    SQLHourGlass := true; // muda a ampulheta quando processar o banco
+    Protocol := 'mssql'; // protocolo
+    LibraryLocation := 'C:\CursoDelphi\ntwdblib.dll'; // biblioteca
+    HostName := '.\SERVERCURSO'; // hostname
+    Port := 1433; // porta do sql
+    User := 'sa'; // usuário do banco de dados
+    Password := 'mudar@123'; // senha do banco de dados
+    Database := 'vendas'; // nome do banco de dados
+    Connected := true; // conexão com o banco de dados
+  end;
+end;
 
 procedure TfrmPrincipal.mnuFecharClick(Sender: TObject);
 begin
