@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, uCadCategoria;
 
 type
   TfrmPrincipal = class(TForm)
@@ -26,6 +26,7 @@ type
     Vendapordata1: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Categoria1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,6 +39,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmPrincipal.Categoria1Click(Sender: TObject);
+begin
+  frmCadCategoria := TfrmCadCategoria.Create(Self); // cria na memória
+  frmCadCategoria.ShowModal; // mostra na tela
+  frmCadCategoria.Release; // tira da memória
+end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
