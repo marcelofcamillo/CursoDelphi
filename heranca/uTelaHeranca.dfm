@@ -20,16 +20,14 @@ object frmTelaHeranca: TfrmTelaHeranca
     Left = 0
     Top = 0
     Width = 795
-    Height = 405
+    Height = 398
     ActivePage = tabListagem
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 749
-    ExplicitHeight = 351
+    ExplicitHeight = 405
     object tabListagem: TTabSheet
       Caption = 'Listagem'
-      ExplicitWidth = 741
-      ExplicitHeight = 323
+      ExplicitHeight = 377
       object pnlListagemTopo: TPanel
         Left = 0
         Top = 0
@@ -42,7 +40,7 @@ object frmTelaHeranca: TfrmTelaHeranca
         Left = 0
         Top = 65
         Width = 787
-        Height = 312
+        Height = 305
         Align = alClient
         DataSource = dtsListagem
         TabOrder = 1
@@ -56,60 +54,64 @@ object frmTelaHeranca: TfrmTelaHeranca
     object tabManutencao: TTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitWidth = 741
-      ExplicitHeight = 305
+      ExplicitHeight = 377
     end
   end
   object pnlRodape: TPanel
     Left = 0
-    Top = 405
+    Top = 398
     Width = 795
-    Height = 38
+    Height = 45
     Align = alBottom
     TabOrder = 1
     object btnNovo: TBitBtn
       Left = 16
-      Top = 6
+      Top = 10
       Width = 75
       Height = 25
       Caption = '&Novo'
       TabOrder = 0
+      OnClick = btnNovoClick
     end
     object btnAlterar: TBitBtn
       Left = 97
-      Top = 6
+      Top = 10
       Width = 75
       Height = 25
       Caption = '&Alterar'
       TabOrder = 1
+      OnClick = btnAlterarClick
     end
     object btnCancelar: TBitBtn
       Left = 178
-      Top = 6
+      Top = 10
       Width = 75
       Height = 25
       Caption = '&Cancelar'
       TabOrder = 2
+      OnClick = btnCancelarClick
     end
     object btnGravar: TBitBtn
       Left = 259
-      Top = 6
+      Top = 10
       Width = 75
       Height = 25
       Caption = '&Gravar'
       TabOrder = 3
+      OnClick = btnGravarClick
     end
     object btnApagar: TBitBtn
       Left = 340
-      Top = 6
+      Top = 10
       Width = 75
       Height = 25
       Caption = 'Apaga&r'
       TabOrder = 4
+      OnClick = btnApagarClick
     end
     object btnFechar: TBitBtn
       Left = 704
-      Top = 6
+      Top = 10
       Width = 75
       Height = 25
       Caption = '&Fechar'
@@ -118,7 +120,7 @@ object frmTelaHeranca: TfrmTelaHeranca
     end
     object btnNavigator: TDBNavigator
       Left = 448
-      Top = 6
+      Top = 10
       Width = 216
       Height = 25
       DataSource = dtsListagem
