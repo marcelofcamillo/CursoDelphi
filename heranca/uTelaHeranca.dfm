@@ -130,7 +130,7 @@ object frmTelaHeranca: TfrmTelaHeranca
   end
   object mskPesquisar: TMaskEdit
     Left = 16
-    Top = 57
+    Top = 55
     Width = 265
     Height = 21
     TabOrder = 2
@@ -139,7 +139,7 @@ object frmTelaHeranca: TfrmTelaHeranca
   end
   object btnPesquisar: TBitBtn
     Left = 296
-    Top = 55
+    Top = 53
     Width = 75
     Height = 25
     Caption = '&Pesquisar'
