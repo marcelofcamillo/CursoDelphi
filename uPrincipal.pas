@@ -59,7 +59,7 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   dtmPrincipal := TdtmPrincipal.Create(Self); // cria o formulário
   with dtmPrincipal.ConexaoDB do begin
-    SQLHourGlass := true; // muda a ampulheta quando processar o banco
+    SQLHourGlass := false; // muda a ampulheta quando processar o banco
     Protocol := 'mssql'; // protocolo
     LibraryLocation := 'C:\CursoDelphi\ntwdblib.dll'; // biblioteca
     HostName := '.\SERVERCURSO'; // hostname

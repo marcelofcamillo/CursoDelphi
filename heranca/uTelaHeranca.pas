@@ -45,8 +45,10 @@ type
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
               btnApagar: TBitBtn; navegador: TDBNavigator; pgcPrincipal: TPageControl; flag: Boolean);
     procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: Integer);
+    function RetornarCampoTraduzido(Campo: String): String;
   public
     { Public declarations }
+    IndiceAtual: String;
   end;
 
 var
@@ -74,6 +76,19 @@ begin
   // verifica se o tab está visível
   if (pgcPrincipal.Pages[indice].TabVisible) then
     pgcPrincipal.TabIndex := indice; // se estiver, coloca 0
+end;
+{$endregion}
+
+{$region 'FUNÇÕES'}
+function TfrmTelaHeranca.RetornarCampoTraduzido(campo: String): String;
+var i: Integer;
+begin
+  for i := 0 to qryListagem.Fields.Count-1 do begin
+    if qryListagem.Fields[i].FieldName = campo then begin
+      Result := qryListagem.Fields[i].DisplayLabel;
+      Break;
+    end;                                           
+  end;
 end;
 {$endregion}
 
@@ -146,11 +161,11 @@ begin
   end;
 end;
 
-
+// pega o campo do grid que foi clicado
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
 begin
-  // pega o campo do grid que foi clicado
-  ShowMessage(Column.FieldName);
+  IndiceAtual := Column.FieldName;
+  qryListagem.IndexFieldNames := IndiceAtual;
+  lblIndice.Caption := RetornarCampoTraduzido(IndiceAtual);
 end;
-
 end.
