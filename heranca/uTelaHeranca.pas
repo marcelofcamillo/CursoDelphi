@@ -81,23 +81,23 @@ begin
 end;
 {$endregion}
 
-{$region 'FUNÇÕES'}
+{$region 'FUNÇÕES E PROCEDURES'}
 function TfrmTelaHeranca.RetornarCampoTraduzido(campo: String): String;
 var i: Integer;
 begin
   for i := 0 to qryListagem.Fields.Count-1 do begin
-    if qryListagem.Fields[i].FieldName = campo then begin
+    if lowercase(qryListagem.Fields[i].FieldName) = lowercase(campo) then begin
       Result := qryListagem.Fields[i].DisplayLabel;
       Break;
     end;                                           
   end;
 end;
-{$endregion}
 
 procedure TfrmTelaHeranca.ExibirLabelIndice(campo: String; aLabel: TLabel);
 begin
   aLabel.Caption := RetornarCampoTraduzido(campo);
 end;
+{$endregion}
 
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
 begin
@@ -171,6 +171,8 @@ begin
     ExibirLabelIndice(IndiceAtual, lblIndice);
     qryListagem.Open; // abre a consulta
   end;
+
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
 end;
 
 // pega o campo do grid que foi clicado
