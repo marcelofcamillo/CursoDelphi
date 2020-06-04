@@ -51,6 +51,8 @@ type
   public
     { Public declarations }
     IndiceAtual: String;
+    function Excluir: Boolean; virtual;
+    function Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean; virtual;
   end;
 
 var
@@ -99,6 +101,24 @@ begin
 end;
 {$endregion}
 
+{$region 'MÉTODOS VIRTUAIS'}
+function TfrmTelaHeranca.Excluir: Boolean;
+begin
+  ShowMessage('Deletado');
+  Result := true;
+end;
+
+function TfrmTelaHeranca.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
+begin
+  if (EstadoDoCadastro = ecInserir) then
+      ShowMessage('Inserido')
+  else if (EstadoDoCadastro = ecAlterar) then
+      ShowMessage('Alterado');
+
+  Result := true;
+end;
+{$endregion}
+
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
 begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
@@ -107,9 +127,11 @@ end;
 
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
-  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
-  ControlarIndiceTab(pgcPrincipal, 0); // não precisava
-  EstadoDoCadastro := ecNenhum;
+  if Excluir then begin
+    ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+    ControlarIndiceTab(pgcPrincipal, 0); // não precisava
+    EstadoDoCadastro := ecNenhum;
+  end;
 end;
 
 procedure TfrmTelaHeranca.btnCancelarClick(Sender: TObject);
@@ -127,15 +149,10 @@ end;
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
   try
-    ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
-    ControlarIndiceTab(pgcPrincipal, 0);
-
-    if (EstadoDoCadastro = ecInserir) then
-      ShowMessage('Inserido')
-    else if (EstadoDoCadastro = ecAlterar) then
-      ShowMessage('Alterado')
-    else
-      ShowMessage('Nada aconteceu');
+    if Gravar(EstadoDoCadastro) then begin
+      ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+      ControlarIndiceTab(pgcPrincipal, 0);
+    end;
   finally
     EstadoDoCadastro := ecNenhum;
   end;
