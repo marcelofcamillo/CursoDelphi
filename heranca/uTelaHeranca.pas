@@ -51,6 +51,7 @@ type
     procedure ExibirLabelIndice(campo: String; aLabel: TLabel);
     function ExisteCampoObrigatorio: Boolean;
     procedure DesabilitarEditPK;
+    procedure LimparEdits;
   public
     { Public declarations }
     IndiceAtual: String;
@@ -141,6 +142,17 @@ begin
     end;
   end;
 end;
+
+procedure TfrmTelaHeranca.LimparEdits;
+var i: Integer;
+begin
+  for i := 0 to ComponentCount -1 do begin
+    if Components[i] is TLabeledEdit then
+      TLabeledEdit(Components[i]).Text := EmptyStr
+    else if Components[i] is TEdit then
+      TEdit(Components[i]).Text := EmptyStr;
+  end;
+end;
 {$endregion}
 
 {$region 'MÉTODOS VIRTUAIS'}
@@ -174,6 +186,7 @@ begin
     if Excluir then begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0); // não precisava
+      LimparEdits;
     end
     else begin
       MessageDlg('Erro na exclusão.', mtError, [mbOK], 0);
@@ -188,6 +201,7 @@ begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
   ControlarIndiceTab(pgcPrincipal, 0);
   EstadoDoCadastro := ecNenhum;
+  LimparEdits;
 end;
 
 procedure TfrmTelaHeranca.btnFecharClick(Sender: TObject);
@@ -205,6 +219,7 @@ begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0);
       EstadoDoCadastro := ecNenhum;
+      LimparEdits;
     end
     else begin
       MessageDlg('Erro na gravação.', mtError, [mbOK], 0);
@@ -218,9 +233,11 @@ procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
   EstadoDoCadastro := ecInserir;
+  LimparEdits;
 end;
 {$endregion}
 
+{$region 'EVENTS'}
 procedure TfrmTelaHeranca.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   qryListagem.Close; // fecha a consulta
@@ -267,5 +284,6 @@ procedure TfrmTelaHeranca.mskPesquisarChange(Sender: TObject);
 begin
   qryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text, [loPartialKey]);
 end;
+{$endregion}
 
 end.

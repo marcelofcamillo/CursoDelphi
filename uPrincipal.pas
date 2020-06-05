@@ -42,6 +42,7 @@ implementation
 
 {$R *.dfm}
 
+{$region 'EVENTS'}
 procedure TfrmPrincipal.Categoria1Click(Sender: TObject);
 begin
   frmCadCategoria := TfrmCadCategoria.Create(Self); // cria na memória
@@ -74,11 +75,14 @@ begin
   TeclaEnter.FocusEnabled := true;
   TeclaEnter.FocusColor := clInfoBk; // cor (amarelo claro)
 end;
+{$endregion}
 
+{$region 'BOTÕES'}
 procedure TfrmPrincipal.mnuFecharClick(Sender: TObject);
 begin
   //Close;
   Application.Terminate;
 end;
+{$endregion}
 
 end.
