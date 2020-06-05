@@ -189,6 +189,7 @@ begin
     qryListagem.Open; // abre a consulta
   end;
 
+  ControlarIndiceTab(pgcPrincipal, 0);
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
 end;
 
