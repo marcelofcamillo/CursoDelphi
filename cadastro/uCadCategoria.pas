@@ -15,7 +15,6 @@ type
     edtCategoriaId: TLabeledEdit;
     edtDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
-    procedure btnGravarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,18 +27,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TfrmCadCategoria.btnGravarClick(Sender: TObject);
-begin
-  if edtDescricao.Text = EmptyStr then begin
-    ShowMessage('Campo obrigatório');
-    edtDescricao.SetFocus;
-    Abort;
-  end;
-
-  inherited;
-
-end;
 
 procedure TfrmCadCategoria.FormCreate(Sender: TObject);
 begin
