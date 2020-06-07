@@ -42,8 +42,6 @@ type
     procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
-    EstadoDoCadastro: TEstadoDoCadastro;
-
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
               btnApagar: TBitBtn; navegador: TDBNavigator; pgcPrincipal: TPageControl; flag: Boolean);
     procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: Integer);
@@ -55,7 +53,8 @@ type
   public
     { Public declarations }
     IndiceAtual: String;
-    function Excluir: Boolean; virtual;
+    EstadoDoCadastro: TEstadoDoCadastro;
+    function Apagar: Boolean; virtual;
     function Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean; virtual;
   end;
 
@@ -155,8 +154,9 @@ begin
 end;
 {$endregion}
 
+// estão sobrescritos, não tem mais funcionalidade
 {$region 'MÉTODOS VIRTUAIS'}
-function TfrmTelaHeranca.Excluir: Boolean;
+function TfrmTelaHeranca.Apagar: Boolean;
 begin
   ShowMessage('Deletado.');
   Result := true;
@@ -183,7 +183,7 @@ end;
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
   try
-    if Excluir then begin
+    if Apagar then begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0); // não precisava
       LimparEdits;
@@ -215,7 +215,7 @@ begin
     Abort;
 
   try
-    if Gravar(EstadoDoCadastro) then begin
+    if Gravar(EstadoDoCadastro) then begin // método virtual
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0);
       EstadoDoCadastro := ecNenhum;
