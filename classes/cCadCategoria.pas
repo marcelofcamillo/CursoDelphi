@@ -3,8 +3,8 @@ unit cCadCategoria;
 interface
 
 uses
-  System.Classes, Vcl.Controls, Vcl.ExtCtrls, Vcl.Dialogs, uDTMConexao,
-  ZAbstractConnection, ZConnection;
+  System.Classes, Vcl.Controls, Vcl.ExtCtrls, Vcl.Dialogs, uDTMConexao, System.SysUtils,
+  ZAbstractConnection, ZConnection, ZAbstractRODataset, ZAbstractDataset, ZDataset;
 
 type
   TCategoria = class
@@ -21,7 +21,7 @@ type
     public
       constructor Create(aConexao: TZConnection);
       destructor Destroy; override;
-      function Gravar: Boolean;
+      function Inserir: Boolean;
       function Atualizar: Boolean;
       function Apagar: Boolean;
       function Selecionar(id: Integer): Boolean;
@@ -62,11 +62,27 @@ begin
   Result := true;
 end;
 
-function TCategoria.Gravar: Boolean;
+function TCategoria.Inserir: Boolean;
+var qry: TZQuery;
 begin
-  //ShowMessage('Gravado.');
-  //Result := true;
-  Result := false;
+  try
+    Result := true;
+    qry := TZQuery.Create(nil);
+    qry.Connection := ConexaoDB;
+    qry.SQL.Clear;
+    qry.SQL.Add('INSERT INTO categorias (descricao) values (:descricao)');
+    qry.ParamByName('descricao').Value := Self.F_descricao;
+
+    try
+      qry.ExecSQL;
+    except
+      Result := false;
+    end;
+
+  finally
+    if Assigned(qry) then
+      FreeAndNil(qry);
+  end;
 end;
 
 function TCategoria.Selecionar(id: Integer): Boolean;

@@ -187,6 +187,7 @@ begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0); // não precisava
       LimparEdits;
+      qryListagem.Refresh;
     end
     else begin
       MessageDlg('Erro na exclusão.', mtError, [mbOK], 0);
@@ -220,6 +221,7 @@ begin
       ControlarIndiceTab(pgcPrincipal, 0);
       EstadoDoCadastro := ecNenhum;
       LimparEdits;
+      qryListagem.Refresh;
     end
     else begin
       MessageDlg('Erro na gravação.', mtError, [mbOK], 0);

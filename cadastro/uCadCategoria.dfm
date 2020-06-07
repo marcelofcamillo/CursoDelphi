@@ -5,10 +5,6 @@ inherited frmCadCategoria: TfrmCadCategoria
   inherited pgcPrincipal: TPageControl
     ActivePage = tabManutencao
     inherited tabListagem: TTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       inherited grdListagem: TDBGrid
         Columns = <
           item
