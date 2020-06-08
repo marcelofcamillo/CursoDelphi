@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, uCadCategoria, Enter;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, uCadCategoria, uCadCliente, Enter;
 
 type
   TfrmPrincipal = class(TForm)
@@ -28,6 +28,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Cliente1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -48,6 +49,13 @@ begin
   frmCadCategoria := TfrmCadCategoria.Create(Self); // cria na memória
   frmCadCategoria.ShowModal; // mostra na tela
   frmCadCategoria.Release; // tira da memória
+end;
+
+procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
+begin
+  frmCadCliente := TfrmCadCliente.Create(Self);
+  frmCadCliente.ShowModal;
+  frmCadCliente.Release;
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);

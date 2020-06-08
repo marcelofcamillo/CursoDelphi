@@ -64,8 +64,7 @@ begin
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('DELETE FROM categorias '+
-                'WHERE categoriaId = :categoriaId');
+    qry.SQL.Add('DELETE FROM categorias WHERE categoriaId = :categoriaId');
     qry.ParamByName('categoriaId').AsInteger := F_categoriaId;
 
     try
@@ -88,9 +87,7 @@ begin
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('UPDATE categorias ' +
-                'SET descricao = :descricao ' +
-                'WHERE categoriaId = :categoriaId');
+    qry.SQL.Add('UPDATE categorias SET descricao = :descricao WHERE categoriaId = :categoriaId');
     qry.ParamByName('descricao').AsString    := Self.F_descricao;
     qry.ParamByName('categoriaId').AsInteger := Self.F_categoriaId;
 
@@ -114,8 +111,7 @@ begin
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('INSERT INTO categorias (descricao) ' +
-                'VALUES (:descricao)');
+    qry.SQL.Add('INSERT INTO categorias (descricao) VALUES (:descricao)');
     qry.ParamByName('descricao').AsString := Self.F_descricao;
 
     try
@@ -138,9 +134,7 @@ begin
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('SELECT categoriaId, descricao '+
-                'FROM categorias '+
-                'WHERE categoriaId = :categoriaId');
+    qry.SQL.Add('SELECT categoriaId, descricao FROM categorias WHERE categoriaId = :categoriaId');
     qry.ParamByName('categoriaId').AsInteger := id;
 
     try

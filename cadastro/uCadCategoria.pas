@@ -16,7 +16,6 @@ type
     edtDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnGravarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
@@ -70,17 +69,6 @@ begin
     btnCancelar.Click;
     Abort;
   end;
-
-  inherited;
-
-end;
-
-procedure TfrmCadCategoria.btnGravarClick(Sender: TObject);
-begin
-  {oCategoria.codigo := 100;
-  oCategoria.descricao := 'Teste';
-  ShowMessage(oCategoria.descricao);}
-
 
   inherited;
 

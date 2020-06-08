@@ -5,6 +5,10 @@ inherited frmCadCategoria: TfrmCadCategoria
   inherited pgcPrincipal: TPageControl
     ActivePage = tabManutencao
     inherited tabListagem: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 726
+      ExplicitHeight = 375
       inherited grdListagem: TDBGrid
         Columns = <
           item
@@ -22,6 +26,10 @@ inherited frmCadCategoria: TfrmCadCategoria
       end
     end
     inherited tabManutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 726
+      ExplicitHeight = 375
       object edtCategoriaId: TLabeledEdit
         Tag = 1
         Left = 12
@@ -56,9 +64,7 @@ inherited frmCadCategoria: TfrmCadCategoria
   end
   inherited qryListagem: TZQuery
     SQL.Strings = (
-      'SELECT categoriaId,'
-      '       descricao'
-      'FROM categorias'
+      'SELECT categoriaId, descricao FROM categorias'
       '             ')
     object qryListagemcategoriaId: TIntegerField
       DisplayLabel = 'C'#243'digo'
