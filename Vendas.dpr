@@ -10,7 +10,9 @@ uses
   uEnum in 'heranca\uEnum.pas',
   cCadCategoria in 'classes\cCadCategoria.pas',
   uCadCliente in 'cadastro\uCadCliente.pas' {frmCadCliente},
-  cCadCliente in 'classes\cCadCliente.pas';
+  cCadCliente in 'classes\cCadCliente.pas',
+  uCadProduto in 'cadastro\uCadProduto.pas' {frmCadProduto},
+  cCadProduto in 'classes\cCadProduto.pas';
 
 {$R *.res}
 
@@ -18,5 +20,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadProduto, frmCadProduto);
   Application.Run;
 end.
