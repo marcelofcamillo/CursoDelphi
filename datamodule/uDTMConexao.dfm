@@ -9,7 +9,7 @@ object dtmPrincipal: TdtmPrincipal
     SQLHourGlass = True
     HostName = '.\SERVERCURSO'
     Port = 0
-    Database = 'vendas2'
+    Database = 'vendas'
     User = 'sa'
     Password = 'mudar@123'
     Protocol = 'mssql'
