@@ -40,6 +40,8 @@ type
     procedure grdListagemTitleClick(Column: TColumn);
     procedure mskPesquisarChange(Sender: TObject);
     procedure grdListagemDblClick(Sender: TObject);
+    procedure grdListagemKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
@@ -50,12 +52,14 @@ type
     function ExisteCampoObrigatorio: Boolean;
     procedure DesabilitarEditPK;
     procedure LimparEdits;
+    procedure mskPesquisaChange(Sender: TObject);
   public
     { Public declarations }
     IndiceAtual: String;
     EstadoDoCadastro: TEstadoDoCadastro;
     function Apagar: Boolean; virtual;
     function Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean; virtual;
+    procedure bloqueiaCTRL_DEL_DBGrid(var key: Word; shift: TShiftState);
   end;
 
 var
@@ -286,6 +290,12 @@ begin
   btnAlterar.Click;
 end;
 
+procedure TfrmTelaHeranca.grdListagemKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  bloqueiaCTRL_DEL_DBGrid(Key, Shift);
+end;
+
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
 begin
   IndiceAtual := Column.FieldName;
@@ -297,5 +307,17 @@ begin
   qryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text, [loPartialKey]);
 end;
 {$endregion}
+
+procedure TfrmTelaHeranca.mskPesquisaChange(Sender: TObject);
+begin
+  QryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text,[loPartialKey])
+end;
+
+procedure TfrmTelaHeranca.bloqueiaCTRL_DEL_DBGrid(var Key: Word; Shift: TShiftState);
+begin
+  // bloqueia o CRTL + DEL
+  if (Shift = [ssCtrl]) and (Key = 46) then
+    Key := 0;
+end;
 
 end.

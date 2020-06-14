@@ -17,8 +17,8 @@ type
     chkProduto: TCheckBox;
     chkCliente: TCheckBox;
     chkVendas: TCheckBox;
-    chkItensVenda: TCheckBox;
     chkCategoria: TCheckBox;
+    chkItensVenda: TCheckBox;
   private
     { Private declarations }
   public
