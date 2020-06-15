@@ -75,32 +75,6 @@ implementation
 {$R *.dfm}
 
 {$region 'OVERRIDE'}
-{
-function TfrmProVenda.Apagar: Boolean;
-begin
-  if oVenda.Selecionar(QryListagem.FieldByName('vendaId').AsInteger) then begin
-     Result := oVenda.Apagar;
-  end;
-end;
-
-function TfrmProVenda.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
-begin
-  if edtVendaId.Text <> EmptyStr then
-     oVenda.VendaId := StrToInt(edtVendaId.Text)
-  else
-     oVenda.VendaId := 0;
-
-  oVenda.ClienteId  := lkpCliente.KeyValue;
-  oVenda.DataVenda  := edtDataVenda.Date;
-  oVenda.TotalVenda := edtValorTotal.Value;
-
-  if (EstadoDoCadastro = ecInserir) then
-     Result := oVenda.Inserir
-  else if (EstadoDoCadastro = ecAlterar) then
-     Result := oVenda.Atualizar;
-end;
-}
-
 function TfrmProVenda.Apagar: Boolean;
 begin
   if oVenda.Selecionar(qryListagem.FieldByName('vendaId').AsInteger, dtmVendas.cdsItensVenda) then begin

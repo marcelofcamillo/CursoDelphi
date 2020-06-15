@@ -3,7 +3,8 @@ unit cProVenda;
 interface
 
 uses System.Classes, Vcl.Controls, Vcl.ExtCtrls, Vcl.Dialogs, ZAbstractConnection, ZConnection,
-     ZAbstractRODataset, ZAbstractDataset, ZDataset, System.SysUtils, Data.DB, Datasnap.DBClient;
+     ZAbstractRODataset, ZAbstractDataset, ZDataset, System.SysUtils, Data.DB, Datasnap.DBClient,
+     cControleEstoque, uEnum;
 
 type
   TVenda = class
@@ -18,6 +19,8 @@ type
     function AtualizarItem(cds: TClientDataSet): Boolean;
     function ApagaItens(cds: TClientDataSet): Boolean;
     function InserirItens(cds: TClientDataSet; idVenda: Integer): Boolean;
+    procedure RetornarEstoque(sCodigo: String; Acao: TAcaoExcluirEstoque);
+    procedure BaixarEstoque(produtoId: Integer; Quantidade: Double);
 
   public
     constructor Create(aConexao: TZConnection);
@@ -156,6 +159,7 @@ var qry: TZQuery;
 begin
   try
     Result := true;
+    RetornarEstoque(cds.FieldByName('produtoId').AsString, aeeAlterar);
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
@@ -169,6 +173,7 @@ begin
 
     try
       qry.ExecSQL;
+      BaixarEstoque(cds.FieldByName('produtoId').AsInteger, cds.FieldByName('quantidade').AsFloat);
     except
       Result := false;
     end;
@@ -181,14 +186,21 @@ end;
 
 function TVenda.ApagaItens(cds: TClientDataSet): Boolean;
 var qry: TZQuery;
+    sCodNoCds: String;
 begin
   try
     Result := true;
+
+    // pega os codigos que estão no cliente para sSelecionar o In Not no banco de dados
+    sCodNoCds := InNot(cds);
+    // retorna ao estoque
+    RetornarEstoque(sCodNoCds, aeeApagar);
+
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
     qry.SQL.Add(' DELETE FROM vendasItens WHERE vendaId = :vendaId '+
-                'AND produtoId NOT IN ('+InNot(cds)+')');
+                'AND produtoId NOT IN ('+sCodNoCds+')');
     qry.ParamByName('vendaId').AsInteger := Self.F_vendaId;
 
     try
@@ -268,6 +280,7 @@ begin
 
     try
       qry.ExecSQL;
+      BaixarEstoque(cds.FieldByName('produtoId').AsInteger, cds.FieldByName('quantidade').AsFloat);
     except
       Result := false;
     end;
@@ -371,6 +384,56 @@ begin
   end;
 end;
 
+{$endregion}
+
+{$region 'CONTROLE DE ESTOQUE'}
+Procedure TVenda.RetornarEstoque(sCodigo: String; Acao: TAcaoExcluirEstoque);
+var qry: TZQuery;
+    oControleEstoque: TControleEstoque;
+begin
+    qry := TZQuery.Create(nil);
+    qry.Connection := ConexaoDB;
+    qry.SQL.Clear;
+    qry.SQL.Add('SELECT produtoId, quantidade FROM VendasItens WHERE vendaId = :vendaId ');
+
+    if Acao = aeeApagar then
+       qry.SQL.Add('AND produtoId NOT IN ('+sCodigo+')')
+    else
+       qry.SQL.Add('AND produtoId = ('+sCodigo+')');
+
+    qry.ParamByName('vendaId').AsInteger := Self.F_vendaId;
+
+    try
+      oControleEstoque := TControleEstoque.Create(ConexaoDB);
+      qry.Open;
+      qry.First;
+
+      while not Qry.Eof do begin
+         oControleEstoque.produtoId  := qry.FieldByName('produtoId').AsInteger;
+         oControleEstoque.quantidade := qry.FieldByName('quantidade').AsFloat;
+         oControleEstoque.RetornarEstoque;
+         qry.Next;
+      end;
+
+    finally
+      if Assigned(oControleEstoque) then
+         FreeAndNil(oControleEstoque);
+    end;
+end;
+
+Procedure TVenda.BaixarEstoque(produtoId: Integer; quantidade: Double);
+var oControleEstoque: TControleEstoque;
+begin
+    try
+      oControleEstoque := TControleEstoque.Create(ConexaoDB);
+      oControleEstoque.ProdutoId  := produtoId;
+      oControleEstoque.Quantidade := Quantidade;
+      oControleEstoque.BaixarEstoque;
+    finally
+      if Assigned(oControleEstoque) then
+         FreeAndNil(oControleEstoque);
+    end;
+end;
 {$endregion}
 
 end.

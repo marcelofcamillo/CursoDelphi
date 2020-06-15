@@ -9,6 +9,7 @@ inherited frmProVenda: TfrmProVenda
   inherited pgcPrincipal: TPageControl
     Width = 814
     Height = 475
+    ActivePage = tabManutencao
     ExplicitWidth = 814
     ExplicitHeight = 475
     inherited tabListagem: TTabSheet
