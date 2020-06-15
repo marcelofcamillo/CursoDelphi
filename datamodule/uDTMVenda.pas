@@ -7,7 +7,7 @@ uses
   ZAbstractDataset, ZDataset, uDTMConexao, Datasnap.DBClient;
 
 type
-  TdtmVenda = class(TDataModule)
+  TdtmVendas = class(TDataModule)
     qryCliente: TZQuery;
     qryClienteclienteId: TIntegerField;
     qryClientenome: TWideStringField;
@@ -24,7 +24,6 @@ type
     cdsItensVendaquantidade: TFloatField;
     cdsItensVendavalorUnitario: TFloatField;
     cdsItensVendavalorTotalProduto: TFloatField;
-    cdsItensVendavalorTotalVenda: TAggregateField;
     cdsItensVendanomeProduto: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
@@ -35,7 +34,7 @@ type
   end;
 
 var
-  dtmVenda: TdtmVenda;
+  dtmVendas: TdtmVendas;
 
 implementation
 
@@ -43,7 +42,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TdtmVenda.DataModuleCreate(Sender: TObject);
+procedure TdtmVendas.DataModuleCreate(Sender: TObject);
 begin
   cdsItensVenda.CreateDataSet;
 
@@ -51,7 +50,7 @@ begin
   qryProdutos.Open;
 end;
 
-procedure TdtmVenda.DataModuleDestroy(Sender: TObject);
+procedure TdtmVendas.DataModuleDestroy(Sender: TObject);
 begin
   cdsItensVenda.Close;
 

@@ -119,36 +119,37 @@ end;
 
 {$endregion}
 
+{$region 'FUNÇÕES E PROCEDURES'}
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
 begin
   aForm.chkConexao.Checked := true;
   aForm.Refresh;
-  Sleep(200);
+  Sleep(100);
 
   dtmPrincipal.qryScriptCategorias.ExecSQL;
   aForm.chkCategoria.Checked := true;
   aForm.Refresh;
-  Sleep(200);
+  Sleep(100);
 
   dtmPrincipal.qryScriptProdutos.ExecSQL;
   aForm.chkProduto.Checked := true;
   aForm.Refresh;
-  Sleep(200);
+  Sleep(100);
 
   dtmPrincipal.qryScriptClientes.ExecSQL;
   aForm.chkCliente.Checked := true;
   aForm.Refresh;
-  Sleep(200);
+  Sleep(100);
 
   dtmPrincipal.qryScriptVendas.ExecSQL;
   aForm.chkVendas.Checked := true;
   aForm.Refresh;
-  Sleep(200);
+  Sleep(100);
 
   dtmPrincipal.qryScriptItensVendas.ExecSQL;
   aForm.chkItensVenda.Checked := true;
   aForm.Refresh;
-  Sleep(200);
+  Sleep(100);
 end;
-
+{$endregion}
 end.

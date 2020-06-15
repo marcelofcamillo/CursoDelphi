@@ -9,7 +9,6 @@ inherited frmProVenda: TfrmProVenda
   inherited pgcPrincipal: TPageControl
     Width = 814
     Height = 475
-    ActivePage = tabManutencao
     ExplicitWidth = 814
     ExplicitHeight = 475
     inherited tabListagem: TTabSheet
@@ -65,7 +64,7 @@ inherited frmProVenda: TfrmProVenda
         Height = 21
         KeyField = 'clienteId'
         ListField = 'nome'
-        ListSource = dtmVenda.dtsCliente
+        ListSource = dtmVendas.dtsCliente
         TabOrder = 1
       end
       object edtDataVenda: TDateEdit
@@ -128,8 +127,9 @@ inherited frmProVenda: TfrmProVenda
             Height = 21
             KeyField = 'produtoId'
             ListField = 'nome'
-            ListSource = dtmVenda.dtsProdutos
+            ListSource = dtmVendas.dtsProdutos
             TabOrder = 0
+            OnExit = lkpProdutoExit
           end
           object edtValorUnitario: TCurrencyEdit
             Left = 317
@@ -146,8 +146,10 @@ inherited frmProVenda: TfrmProVenda
             Height = 21
             DisplayFormat = ' ,0.00;- ,0.00'
             TabOrder = 2
+            OnEnter = edtQuantidadeEnter
+            OnExit = edtQuantidadeExit
           end
-          object btnAdicionar: TBitBtn
+          object btnAdicionarItem: TBitBtn
             Left = 632
             Top = 21
             Width = 75
@@ -181,6 +183,7 @@ inherited frmProVenda: TfrmProVenda
               17BF6F17FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 4
+            OnClick = btnAdicionarItemClick
           end
           object edtTotalProduto: TCurrencyEdit
             Left = 530
@@ -193,7 +196,7 @@ inherited frmProVenda: TfrmProVenda
             ReadOnly = True
             TabOrder = 3
           end
-          object btnRemover: TBitBtn
+          object btnRemoverItem: TBitBtn
             Left = 718
             Top = 21
             Width = 75
@@ -228,6 +231,7 @@ inherited frmProVenda: TfrmProVenda
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 5
             TabStop = False
+            OnClick = btnRemoverItemClick
           end
         end
         object Panel3: TPanel
@@ -243,7 +247,7 @@ inherited frmProVenda: TfrmProVenda
             Width = 802
             Height = 295
             Align = alClient
-            DataSource = dtmVenda.dtsItensVenda
+            DataSource = dtmVendas.dtsItensVenda
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit]
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
@@ -251,6 +255,7 @@ inherited frmProVenda: TfrmProVenda
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            OnDblClick = dbGridItensVendaDblClick
             OnKeyDown = dbGridItensVendaKeyDown
             Columns = <
               item
@@ -261,7 +266,7 @@ inherited frmProVenda: TfrmProVenda
               item
                 Expanded = False
                 FieldName = 'nomeProduto'
-                Width = 384
+                Width = 370
                 Visible = True
               end
               item
@@ -279,7 +284,7 @@ inherited frmProVenda: TfrmProVenda
               item
                 Expanded = False
                 FieldName = 'valorTotalProduto'
-                Width = 131
+                Width = 116
                 Visible = True
               end>
           end
@@ -363,7 +368,7 @@ inherited frmProVenda: TfrmProVenda
     end
     object qryListagemnome: TWideStringField
       DisplayLabel = 'Nome'
-      DisplayWidth = 64
+      DisplayWidth = 62
       FieldName = 'nome'
       Size = 60
     end
