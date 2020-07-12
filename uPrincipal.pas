@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao,
-  uCadCategoria, uCadCliente, uCadProduto, Enter, uFrmAtualizaDB, uProVenda;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
+  uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria;
 
 type
   TfrmPrincipal = class(TForm)
@@ -25,6 +25,7 @@ type
     Produto2: TMenuItem;
     N4: TMenuItem;
     Vendapordata1: TMenuItem;
+    Categorias1: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -32,6 +33,7 @@ type
     procedure Cliente1Click(Sender: TObject);
     procedure Produto1Click(Sender: TObject);
     procedure Vendas1Click(Sender: TObject);
+    procedure Categorias1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -53,6 +55,13 @@ begin
   frmCadCategoria := TfrmCadCategoria.Create(Self); // cria na memória
   frmCadCategoria.ShowModal; // mostra na tela
   frmCadCategoria.Release; // tira da memória
+end;
+
+procedure TfrmPrincipal.Categorias1Click(Sender: TObject);
+begin
+  frmRelCategoria := TfrmRelCategoria.Create(Self);
+  frmRelCategoria.relatorio.PreviewModal;
+  frmRelCategoria.Release;
 end;
 
 procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
