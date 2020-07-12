@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
-  uRelCadCliente, uRelCadClienteFicha;
+  uRelCadCliente, uRelCadClienteFicha, uRelCadProduto;
 
 type
   TfrmPrincipal = class(TForm)
@@ -38,6 +38,7 @@ type
     procedure Categorias1Click(Sender: TObject);
     procedure Cliente2Click(Sender: TObject);
     procedure FichadeClientes1Click(Sender: TObject);
+    procedure Produto2Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -135,6 +136,13 @@ begin
   frmCadProduto := TfrmCadProduto.Create(Self);
   frmCadProduto.ShowModal;
   frmCadProduto.Release;
+end;
+
+procedure TfrmPrincipal.Produto2Click(Sender: TObject);
+begin
+  frmRelCadProduto := TfrmRelCadProduto.Create(Self);
+  frmRelCadProduto.relatorio.PreviewModal;
+  frmRelCadProduto.Release;
 end;
 
 procedure TfrmPrincipal.Vendas1Click(Sender: TObject);
