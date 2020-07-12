@@ -1,7 +1,7 @@
-object frmRelCategoria: TfrmRelCategoria
+object frmRelCadCliente: TfrmRelCadCliente
   Left = 0
   Top = 0
-  Caption = 'Relat'#243'rio de Categorias'
+  Caption = 'Relat'#243'rio de Clientes'
   ClientHeight = 494
   ClientWidth = 776
   Color = clBtnFace
@@ -20,30 +20,33 @@ object frmRelCategoria: TfrmRelCategoria
     Top = 0
     Width = 794
     Height = 1123
-    DataSource = dtsCategorias
+    DataSource = dtsClientes
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
     Font.Name = 'Arial'
     Font.Style = []
+    Transparent = False
     object cabecalho: TRLBand
       Left = 38
       Top = 38
       Width = 718
       Height = 45
       BandType = btHeader
+      Transparent = False
       object RLLabel1: TRLLabel
         Left = 0
         Top = 10
-        Width = 245
+        Width = 217
         Height = 24
-        Caption = 'Listagem de Categorias'
+        Caption = 'Listagem de Clientes'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -21
         Font.Name = 'Arial'
         Font.Style = [fsBold]
         ParentFont = False
+        Transparent = False
       end
       object RLDraw1: TRLDraw
         Left = 0
@@ -53,6 +56,7 @@ object frmRelCategoria: TfrmRelCategoria
         Align = faBottom
         DrawKind = dkLine
         Pen.Width = 2
+        Transparent = False
       end
     end
     object rodape: TRLBand
@@ -61,6 +65,7 @@ object frmRelCategoria: TfrmRelCategoria
       Width = 718
       Height = 30
       BandType = btFooter
+      Transparent = False
       object RLDraw2: TRLDraw
         Left = 0
         Top = 0
@@ -69,6 +74,7 @@ object frmRelCategoria: TfrmRelCategoria
         Align = faTop
         DrawKind = dkLine
         Pen.Width = 2
+        Transparent = False
       end
       object RLSystemInfo1: TRLSystemInfo
         Left = 0
@@ -77,6 +83,7 @@ object frmRelCategoria: TfrmRelCategoria
         Height = 16
         Info = itFullDate
         Text = ''
+        Transparent = False
       end
       object RLSystemInfo2: TRLSystemInfo
         Left = 651
@@ -86,6 +93,7 @@ object frmRelCategoria: TfrmRelCategoria
         Alignment = taRightJustify
         Info = itPageNumber
         Text = ''
+        Transparent = False
       end
       object RLSystemInfo3: TRLSystemInfo
         Left = 688
@@ -94,13 +102,7 @@ object frmRelCategoria: TfrmRelCategoria
         Height = 16
         Info = itPageNumber
         Text = ''
-      end
-      object RLLabel3: TRLLabel
-        Left = 607
-        Top = 11
-        Width = 44
-        Height = 16
-        Caption = 'P'#225'gina'
+        Transparent = False
       end
       object RLLabel2: TRLLabel
         Left = 680
@@ -111,30 +113,61 @@ object frmRelCategoria: TfrmRelCategoria
         Caption = '/'
         Transparent = False
       end
+      object RLLabel3: TRLLabel
+        Left = 607
+        Top = 11
+        Width = 44
+        Height = 16
+        Caption = 'P'#225'gina'
+        Transparent = False
+      end
     end
     object detail: TRLBand
       Left = 38
       Top = 102
       Width = 718
       Height = 16
+      Transparent = False
       object RLDBText1: TRLDBText
-        Left = 3
+        Left = 2
         Top = 0
-        Width = 49
+        Width = 52
         Height = 16
         Alignment = taCenter
-        DataField = 'categoriaId'
-        DataSource = dtsCategorias
+        DataField = 'clienteId'
+        DataSource = dtsClientes
         Text = ''
+        Transparent = False
       end
       object RLDBText2: TRLDBText
         Left = 84
         Top = 0
-        Width = 153
+        Width = 181
         Height = 16
-        DataField = 'descricao'
-        DataSource = dtsCategorias
+        DataField = 'nome'
+        DataSource = dtsClientes
         Text = ''
+        Transparent = False
+      end
+      object RLDBText3: TRLDBText
+        Left = 301
+        Top = 0
+        Width = 210
+        Height = 16
+        DataField = 'email'
+        DataSource = dtsClientes
+        Text = ''
+        Transparent = False
+      end
+      object RLDBText4: TRLDBText
+        Left = 610
+        Top = 0
+        Width = 90
+        Height = 16
+        DataField = 'telefone'
+        DataSource = dtsClientes
+        Text = ''
+        Transparent = False
       end
     end
     object RLBand1: TRLBand
@@ -143,6 +176,7 @@ object frmRelCategoria: TfrmRelCategoria
       Width = 718
       Height = 19
       BandType = btColumnHeader
+      Transparent = False
       object RLPanel1: TRLPanel
         Left = 0
         Top = 0
@@ -152,53 +186,90 @@ object frmRelCategoria: TfrmRelCategoria
         Color = clInfoBk
         ParentColor = False
         Transparent = False
-      end
-      object RLLabel4: TRLLabel
-        Left = 3
-        Top = 3
-        Width = 49
-        Height = 16
-        Caption = 'C'#243'digo'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -13
-        Font.Name = 'Arial'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object RLLabel5: TRLLabel
-        Left = 84
-        Top = 3
-        Width = 66
-        Height = 16
-        Caption = 'Descri'#231#227'o'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -13
-        Font.Name = 'Arial'
-        Font.Style = [fsBold]
-        ParentFont = False
+        object RLLabel4: TRLLabel
+          Left = 3
+          Top = 3
+          Width = 49
+          Height = 16
+          Caption = 'C'#243'digo'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object RLLabel5: TRLLabel
+          Left = 84
+          Top = 3
+          Width = 41
+          Height = 16
+          Caption = 'Nome'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object RLLabel6: TRLLabel
+          Left = 301
+          Top = 3
+          Width = 44
+          Height = 16
+          Caption = 'E-mail'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object RLLabel7: TRLLabel
+          Left = 610
+          Top = 3
+          Width = 60
+          Height = 16
+          Caption = 'Telefone'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
       end
     end
   end
-  object qryCategorias: TZQuery
+  object qryClientes: TZQuery
     Connection = dtmPrincipal.ConexaoDB
     SQL.Strings = (
-      'SELECT categoriaId, descricao FROM categorias')
+      
+        'SELECT clienteId, nome, email, telefone FROM clientes order by n' +
+        'ome'
+      '')
     Params = <>
     Left = 600
     Top = 16
-    object qryCategoriascategoriaId: TIntegerField
-      FieldName = 'categoriaId'
+    object qryClientesclienteId: TIntegerField
+      FieldName = 'clienteId'
       ReadOnly = True
     end
-    object qryCategoriasdescricao: TWideStringField
-      FieldName = 'descricao'
-      Size = 30
+    object qryClientesnome: TWideStringField
+      FieldName = 'nome'
+      Size = 60
+    end
+    object qryClientesemail: TWideStringField
+      FieldName = 'email'
+      Size = 100
+    end
+    object qryClientestelefone: TWideStringField
+      FieldName = 'telefone'
+      Size = 14
     end
   end
-  object dtsCategorias: TDataSource
-    DataSet = qryCategorias
+  object dtsClientes: TDataSource
+    DataSet = qryClientes
     Left = 672
     Top = 16
   end

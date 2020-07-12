@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
-  uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria;
+  uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
+  uRelCadCliente;
 
 type
   TfrmPrincipal = class(TForm)
@@ -34,6 +35,7 @@ type
     procedure Produto1Click(Sender: TObject);
     procedure Vendas1Click(Sender: TObject);
     procedure Categorias1Click(Sender: TObject);
+    procedure Cliente2Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -69,6 +71,13 @@ begin
   frmCadCliente := TfrmCadCliente.Create(Self);
   frmCadCliente.ShowModal;
   frmCadCliente.Release;
+end;
+
+procedure TfrmPrincipal.Cliente2Click(Sender: TObject);
+begin
+  frmRelCadCliente := TfrmRelCadCliente.Create(Self);
+  frmRelCadCliente.relatorio.PreviewModal;
+  frmRelCadCliente.Release;
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);

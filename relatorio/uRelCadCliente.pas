@@ -1,4 +1,4 @@
-unit uRelCategoria;
+unit uRelCadCliente;
 
 interface
 
@@ -9,11 +9,9 @@ uses
   RLPDFFilter, RLXLSXFilter, RLXLSFilter;
 
 type
-  TfrmRelCategoria = class(TForm)
-    qryCategorias: TZQuery;
-    dtsCategorias: TDataSource;
-    qryCategoriascategoriaId: TIntegerField;
-    qryCategoriasdescricao: TWideStringField;
+  TfrmRelCadCliente = class(TForm)
+    qryClientes: TZQuery;
+    dtsClientes: TDataSource;
     relatorio: TRLReport;
     cabecalho: TRLBand;
     RLLabel1: TRLLabel;
@@ -24,17 +22,25 @@ type
     RLSystemInfo1: TRLSystemInfo;
     RLSystemInfo2: TRLSystemInfo;
     RLSystemInfo3: TRLSystemInfo;
+    RLLabel2: TRLLabel;
     RLLabel3: TRLLabel;
     detail: TRLBand;
     RLDBText1: TRLDBText;
     RLDBText2: TRLDBText;
     RLBand1: TRLBand;
+    RLXLSFilter1: TRLXLSFilter;
+    RLXLSXFilter1: TRLXLSXFilter;
+    qryClientesclienteId: TIntegerField;
+    qryClientesnome: TWideStringField;
+    qryClientesemail: TWideStringField;
+    qryClientestelefone: TWideStringField;
+    RLDBText3: TRLDBText;
+    RLDBText4: TRLDBText;
     RLPanel1: TRLPanel;
     RLLabel4: TRLLabel;
     RLLabel5: TRLLabel;
-    RLXLSFilter1: TRLXLSFilter;
-    RLXLSXFilter1: TRLXLSXFilter;
-    RLLabel2: TRLLabel;
+    RLLabel6: TRLLabel;
+    RLLabel7: TRLLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
@@ -44,20 +50,20 @@ type
   end;
 
 var
-  frmRelCategoria: TfrmRelCategoria;
+  frmRelCadCliente: TfrmRelCadCliente;
 
 implementation
 
 {$R *.dfm}
 
-procedure TfrmRelCategoria.FormCreate(Sender: TObject);
+procedure TfrmRelCadCliente.FormCreate(Sender: TObject);
 begin
-  qryCategorias.Open;
+  qryClientes.Open;
 end;
 
-procedure TfrmRelCategoria.FormDestroy(Sender: TObject);
+procedure TfrmRelCadCliente.FormDestroy(Sender: TObject);
 begin
-  qryCategorias.Close;
+  qryClientes.Close;
 end;
 
 end.
