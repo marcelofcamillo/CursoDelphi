@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
-  uRelCadCliente;
+  uRelCadCliente, uRelCadClienteFicha;
 
 type
   TfrmPrincipal = class(TForm)
@@ -27,6 +27,7 @@ type
     N4: TMenuItem;
     Vendapordata1: TMenuItem;
     Categorias1: TMenuItem;
+    FichadeClientes1: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -36,6 +37,7 @@ type
     procedure Vendas1Click(Sender: TObject);
     procedure Categorias1Click(Sender: TObject);
     procedure Cliente2Click(Sender: TObject);
+    procedure FichadeClientes1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -78,6 +80,13 @@ begin
   frmRelCadCliente := TfrmRelCadCliente.Create(Self);
   frmRelCadCliente.relatorio.PreviewModal;
   frmRelCadCliente.Release;
+end;
+
+procedure TfrmPrincipal.FichadeClientes1Click(Sender: TObject);
+begin
+  frmRelCadClienteFicha := TfrmRelCadClienteFicha.Create(Self);
+  frmRelCadClienteFicha.relatorio.PreviewModal;
+  frmRelCadClienteFicha.Release;
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);

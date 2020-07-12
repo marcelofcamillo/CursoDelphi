@@ -245,7 +245,7 @@ object frmRelCadCliente: TfrmRelCadCliente
     Connection = dtmPrincipal.ConexaoDB
     SQL.Strings = (
       
-        'SELECT clienteId, nome, email, telefone FROM clientes order by n' +
+        'SELECT clienteId, nome, email, telefone FROM clientes ORDER BY n' +
         'ome'
       '')
     Params = <>

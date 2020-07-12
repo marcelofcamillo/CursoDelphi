@@ -32,6 +32,7 @@ type
     qryListagemtelefone: TWideStringField;
     qryListagememail: TWideStringField;
     qryListagemdataNascimento: TDateTimeField;
+    edtEstado: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
@@ -74,6 +75,7 @@ begin
   oCliente.endereco       := edtEndereco.Text;
   oCliente.bairro         := edtBairro.Text;
   oCliente.cidade         := edtCidade.Text;
+  oCliente.estado         := edtEstado.Text;
   oCliente.telefone       := edtTelefone.Text;
   oCliente.email          := edtEmail.Text;
   oCliente.dataNascimento := edtDataNascimento.Date;

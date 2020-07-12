@@ -7,13 +7,15 @@ inherited frmCadCliente: TfrmCadCliente
   inherited pgcPrincipal: TPageControl
     Width = 738
     ActivePage = tabManutencao
+    ExplicitWidth = 738
     inherited tabListagem: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 726
+      ExplicitWidth = 730
       ExplicitHeight = 375
       inherited pnlListagemTopo: TPanel
         Width = 730
+        ExplicitWidth = 730
       end
       inherited grdListagem: TDBGrid
         Width = 730
@@ -43,9 +45,9 @@ inherited frmCadCliente: TfrmCadCliente
       end
     end
     inherited tabManutencao: TTabSheet
-      ExplicitLeft = 8
-      ExplicitTop = 22
-      ExplicitWidth = 727
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 730
       ExplicitHeight = 375
       object Label1: TLabel
         Left = 536
@@ -128,7 +130,7 @@ inherited frmCadCliente: TfrmCadCliente
       object edtCidade: TLabeledEdit
         Left = 12
         Top = 198
-        Width = 501
+        Width = 237
         Height = 21
         EditLabel.Width = 33
         EditLabel.Height = 13
@@ -145,7 +147,7 @@ inherited frmCadCliente: TfrmCadCliente
         EditLabel.Height = 13
         EditLabel.Caption = 'E-mail'
         MaxLength = 100
-        TabOrder = 7
+        TabOrder = 8
       end
       object edtDataNascimento: TDateEdit
         Left = 536
@@ -154,7 +156,7 @@ inherited frmCadCliente: TfrmCadCliente
         Height = 21
         DialogTitle = 'Selecione a data'
         NumGlyphs = 2
-        TabOrder = 8
+        TabOrder = 9
       end
       object edtTelefone: TMaskEdit
         Left = 536
@@ -163,15 +165,28 @@ inherited frmCadCliente: TfrmCadCliente
         Height = 21
         EditMask = '(99) 9999-9999;1;_'
         MaxLength = 14
-        TabOrder = 6
+        TabOrder = 7
         Text = '(  )     -    '
+      end
+      object edtEstado: TLabeledEdit
+        Left = 276
+        Top = 198
+        Width = 237
+        Height = 21
+        EditLabel.Width = 33
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Estado'
+        MaxLength = 2
+        TabOrder = 6
       end
     end
   end
   inherited pnlRodape: TPanel
     Width = 738
+    ExplicitWidth = 738
     inherited btnFechar: TBitBtn
       Left = 647
+      ExplicitLeft = 647
     end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()

@@ -54,16 +54,20 @@ object frmPrincipal: TfrmPrincipal
     end
     object Relatrio1: TMenuItem
       Caption = 'Relat'#243'rio'
-      object Categorias1: TMenuItem
-        Caption = 'Categoria'
-        OnClick = Categorias1Click
-      end
       object Cliente2: TMenuItem
         Caption = 'Cliente'
         OnClick = Cliente2Click
       end
+      object FichadeClientes1: TMenuItem
+        Caption = 'Ficha de Clientes'
+        OnClick = FichadeClientes1Click
+      end
       object N3: TMenuItem
         Caption = '-'
+      end
+      object Categorias1: TMenuItem
+        Caption = 'Categoria'
+        OnClick = Categorias1Click
       end
       object Produto2: TMenuItem
         Caption = 'Produto'
