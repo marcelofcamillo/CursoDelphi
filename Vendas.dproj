@@ -149,8 +149,8 @@
             <Form>frmRelCadClienteFicha</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="relatorio\uRelCadProduto.pas">
-            <Form>frmRelCadProduto</Form>
+        <DCCReference Include="relatorio\uRelCadProdutoComGrupoCategoria.pas">
+            <Form>frmRelCadProdutoComGrupoCategoria</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="relatorio\uRelCadCliente.pas">
@@ -159,6 +159,10 @@
         </DCCReference>
         <DCCReference Include="relatorio\uRelCategoria.pas">
             <Form>frmRelCategoria</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorio\uRelCadProduto.pas">
+            <Form>frmRelCadProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

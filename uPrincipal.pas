@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
-  uRelCadCliente, uRelCadClienteFicha, uRelCadProduto;
+  uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria;
 
 type
   TfrmPrincipal = class(TForm)
@@ -28,6 +28,7 @@ type
     Vendapordata1: TMenuItem;
     Categorias1: TMenuItem;
     FichadeClientes1: TMenuItem;
+    ProdutosporCategoria1: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -39,6 +40,7 @@ type
     procedure Cliente2Click(Sender: TObject);
     procedure FichadeClientes1Click(Sender: TObject);
     procedure Produto2Click(Sender: TObject);
+    procedure ProdutosporCategoria1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -143,6 +145,13 @@ begin
   frmRelCadProduto := TfrmRelCadProduto.Create(Self);
   frmRelCadProduto.relatorio.PreviewModal;
   frmRelCadProduto.Release;
+end;
+
+procedure TfrmPrincipal.ProdutosporCategoria1Click(Sender: TObject);
+begin
+  frmRelCadProdutoComGrupoCategoria := TfrmRelCadProdutoComGrupoCategoria.Create(Self);
+  frmRelCadProdutoComGrupoCategoria.relatorio.PreviewModal;
+  frmRelCadProdutoComGrupoCategoria.Release;
 end;
 
 procedure TfrmPrincipal.Vendas1Click(Sender: TObject);

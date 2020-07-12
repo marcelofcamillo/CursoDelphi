@@ -118,9 +118,9 @@ object frmRelCadProduto: TfrmRelCadProduto
       Width = 718
       Height = 16
       object RLDBText1: TRLDBText
-        Left = -1
+        Left = 3
         Top = 0
-        Width = 58
+        Width = 49
         Height = 16
         Alignment = taCenter
         DataField = 'produtoId'
