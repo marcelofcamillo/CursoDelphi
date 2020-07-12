@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
-  uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria;
+  uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
+  uSelecionarData, uRelProVendaPorData;
 
 type
   TfrmPrincipal = class(TForm)
@@ -41,6 +42,7 @@ type
     procedure FichadeClientes1Click(Sender: TObject);
     procedure Produto2Click(Sender: TObject);
     procedure ProdutosporCategoria1Click(Sender: TObject);
+    procedure Vendapordata1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -152,6 +154,24 @@ begin
   frmRelCadProdutoComGrupoCategoria := TfrmRelCadProdutoComGrupoCategoria.Create(Self);
   frmRelCadProdutoComGrupoCategoria.relatorio.PreviewModal;
   frmRelCadProdutoComGrupoCategoria.Release;
+end;
+
+procedure TfrmPrincipal.Vendapordata1Click(Sender: TObject);
+begin
+  try
+    frmSelecionarData := TfrmSelecionarData.Create(Self);
+    frmSelecionarData.ShowModal;
+
+    frmRelProVendaPorData := TfrmRelProVendaPorData.Create(Self);
+    frmRelProVendaPorData.qryVendas.Close;
+    frmRelProVendaPorData.qryVendas.ParamByName('dataInicial').AsDate := frmSelecionarData.edtDataInicial.Date;
+    frmRelProVendaPorData.qryVendas.ParamByName('dataFinal').AsDate := frmSelecionarData.edtDataFinal.Date;
+    frmRelProVendaPorData.qryVendas.Open;
+    frmRelProVendaPorData.relatorio.PreviewModal;
+  finally
+    frmSelecionarData.Release;
+    frmRelProVendaPorData.Release;
+  end;
 end;
 
 procedure TfrmPrincipal.Vendas1Click(Sender: TObject);

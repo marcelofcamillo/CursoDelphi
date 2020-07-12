@@ -18,11 +18,13 @@ uses
   uProVenda in 'processo\uProVenda.pas' {frmProVenda},
   cProVenda in 'classes\cProVenda.pas',
   cControleEstoque in 'classes\cControleEstoque.pas',
-  uRelCadClienteFicha in 'relatorio\uRelCadClienteFicha.pas' {frmRelCadClienteFicha},
-  uRelCadProdutoComGrupoCategoria in 'relatorio\uRelCadProdutoComGrupoCategoria.pas' {frmRelCadProdutoComGrupoCategoria},
   uRelCadCliente in 'relatorio\uRelCadCliente.pas' {frmRelCadCliente},
+  uRelCadClienteFicha in 'relatorio\uRelCadClienteFicha.pas' {frmRelCadClienteFicha},
+  uRelCadProduto in 'relatorio\uRelCadProduto.pas' {frmRelCadProduto},
+  uRelCadProdutoComGrupoCategoria in 'relatorio\uRelCadProdutoComGrupoCategoria.pas' {frmRelCadProdutoComGrupoCategoria},
   uRelCategoria in 'relatorio\uRelCategoria.pas' {frmRelCategoria},
-  uRelCadProduto in 'relatorio\uRelCadProduto.pas' {frmRelCadProduto};
+  uRelProVendaPorData in 'relatorio\uRelProVendaPorData.pas' {frmRelProVendaPorData},
+  uSelecionarData in 'relatorio\uSelecionarData.pas' {frmSelecionarData};
 
 {$R *.res}
 
@@ -30,6 +32,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmRelCadProduto, frmRelCadProduto);
   Application.Run;
 end.
