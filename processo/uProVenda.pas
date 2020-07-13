@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB, Vcl.Grids, Vcl.DBCtrls,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls, uDTMConexao, uDTMVenda, RxToolEdit, RxCurrEdit,
-  uEnum, cProVenda;
+  uEnum, cProVenda, uRelProVenda;
 
 type
   TfrmProVenda = class(TfrmTelaHeranca)
@@ -77,26 +77,43 @@ implementation
 {$region 'OVERRIDE'}
 function TfrmProVenda.Apagar: Boolean;
 begin
-  if oVenda.Selecionar(qryListagem.FieldByName('vendaId').AsInteger, dtmVendas.cdsItensVenda) then begin
+  if oVenda.Selecionar(QryListagem.FieldByName('vendaId').AsInteger, dtmVendas.cdsItensVenda) then begin
      Result := oVenda.Apagar;
   end;
 end;
 
 function TfrmProVenda.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
 begin
+  Result := False;
   if edtVendaId.Text <> EmptyStr then
-     oVenda.VendaId:=StrToInt(edtVendaId.Text)
+     oVenda.VendaId := StrToInt(edtVendaId.Text)
   else
-     oVenda.vendaId := 0;
+     oVenda.VendaId := 0;
 
-  oVenda.ClienteId  := lkpCliente.KeyValue;
-  oVenda.DataVenda  := edtDataVenda.Date;
+  oVenda.ClienteId := lkpCliente.KeyValue;
+  oVenda.DataVenda := edtDataVenda.Date;
   oVenda.TotalVenda := edtValorTotal.Value;
 
-  if EstadoDoCadastro = ecInserir then
-     Result := oVenda.Inserir(dtmVendas.cdsItensVenda)
-  else if EstadoDoCadastro = ecAlterar then
-     Result := oVenda.Atualizar(dtmVendas.cdsItensVenda);
+  if (EstadoDoCadastro = ecInserir) then begin
+     oVenda.VendaId := oVenda.Inserir(dtmVendas.cdsItensVenda);
+  end
+  else if (EstadoDoCadastro = ecAlterar) then
+     oVenda.Atualizar(dtmVendas.cdsItensVenda);
+
+  frmRelProVenda := TfrmRelProVenda.Create(Self);
+  frmRelProVenda.qryVendaItens.Close;
+  frmRelProVenda.qryVendaItens.ParamByName('vendaId').AsInteger := oVenda.vendaId;
+  frmRelProVenda.qryVendaItens.Open;
+
+  frmRelProVenda.qryVendaItens.Close;
+  frmRelProVenda.qryVendaItens.ParamByName('vendaId').AsInteger := oVenda.vendaId;
+  frmRelProVenda.qryVendaItens.Open;
+
+
+  frmRelProVenda.relatorio.PreviewModal;
+  frmRelProVenda.Release;
+
+  Result := true;
 end;
 
 {$endregion}
@@ -106,9 +123,8 @@ procedure TfrmProVenda.lkpProdutoExit(Sender: TObject);
 begin
   inherited;
 
-  //if lkpProduto.KeyValue = null then begin
-  if TDBLookupComboBox(Sender).KeyValue <> null then begin  
-    edtValorUnitario.Value := dtmVendas.qryProdutos.FieldByName('valor').AsFloat;
+  if lkpProduto.KeyValue <> Null then begin
+    edtValorUnitario.Value:=dtmVendas.qryProdutos.FieldByName('valor').AsFloat;
     edtQuantidade.Value := 1;
     edtTotalProduto.Value := TotalizarProduto(edtValorUnitario.Value, edtQuantidade.Value);
   end;
@@ -158,7 +174,6 @@ begin
   edtValorTotal.Value := TotalizarVenda;
   LimparComponenteItem;
   lkpProduto.SetFocus;
-
 end;
 
 procedure TfrmProVenda.btnAlterarClick(Sender: TObject);
@@ -283,6 +298,7 @@ end;
 
 procedure TfrmProVenda.LimparCds;
 begin
+  dtmVendas.cdsItensVenda.First;
   while not dtmVendas.cdsItensVenda.Eof do
     dtmVendas.cdsItensVenda.Delete;
 end;
