@@ -3,7 +3,7 @@ object frmAtualizaDB: TfrmAtualizaDB
   Top = 0
   BorderStyle = bsNone
   Caption = 'frmAtualizaDB'
-  ClientHeight = 247
+  ClientHeight = 253
   ClientWidth = 586
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object frmAtualizaDB: TfrmAtualizaDB
     Left = 0
     Top = 0
     Width = 586
-    Height = 247
+    Height = 253
     Align = alClient
     BevelOuter = bvLowered
     BevelWidth = 3
@@ -27,12 +27,12 @@ object frmAtualizaDB: TfrmAtualizaDB
     Color = clBackground
     ParentBackground = False
     TabOrder = 0
-    ExplicitHeight = 299
+    ExplicitHeight = 247
     object Panel2: TPanel
       Left = 6
       Top = 6
       Width = 574
-      Height = 235
+      Height = 241
       Align = alClient
       Enabled = False
       ParentBackground = False
@@ -348,7 +348,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object Label1: TLabel
         Left = 235
-        Top = 15
+        Top = 10
         Width = 327
         Height = 25
         Caption = 'Atualiza'#231#227'o do Banco de Dados'
@@ -361,7 +361,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object chkConexao: TCheckBox
         Left = 284
-        Top = 55
+        Top = 49
         Width = 245
         Height = 17
         Caption = 'Conex'#227'o com o banco de dados'
@@ -375,7 +375,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object chkProduto: TCheckBox
         Left = 284
-        Top = 112
+        Top = 104
         Width = 73
         Height = 17
         Caption = 'Produto'
@@ -389,7 +389,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object chkCliente: TCheckBox
         Left = 284
-        Top = 141
+        Top = 132
         Width = 73
         Height = 17
         Caption = 'Cliente'
@@ -403,7 +403,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object chkVendas: TCheckBox
         Left = 284
-        Top = 170
+        Top = 159
         Width = 73
         Height = 17
         Caption = 'Vendas'
@@ -417,7 +417,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object chkCategoria: TCheckBox
         Left = 284
-        Top = 82
+        Top = 74
         Width = 89
         Height = 22
         Caption = 'Categoria'
@@ -431,7 +431,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object chkItensVenda: TCheckBox
         Left = 284
-        Top = 200
+        Top = 185
         Width = 117
         Height = 17
         Caption = 'Itens Vendas'
@@ -442,6 +442,20 @@ object frmAtualizaDB: TfrmAtualizaDB
         Font.Style = []
         ParentFont = False
         TabOrder = 5
+      end
+      object chkUsuarios: TCheckBox
+        Left = 284
+        Top = 211
+        Width = 117
+        Height = 17
+        Caption = 'Usu'#225'rios'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 6
       end
     end
   end

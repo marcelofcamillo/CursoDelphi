@@ -214,6 +214,11 @@ begin
   aForm.chkItensVenda.Checked := true;
   aForm.Refresh;
   Sleep(100);
+
+  dtmPrincipal.qryScriptUsuarios.ExecSQL;
+  aForm.chkUsuarios.Checked := true;
+  aForm.Refresh;
+  Sleep(100);
 end;
 {$endregion}
 end.

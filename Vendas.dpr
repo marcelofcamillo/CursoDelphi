@@ -25,7 +25,8 @@ uses
   uRelCategoria in 'relatorio\uRelCategoria.pas' {frmRelCategoria},
   uSelecionarData in 'relatorio\uSelecionarData.pas' {frmSelecionarData},
   uRelProVendaPorData in 'relatorio\uRelProVendaPorData.pas' {frmRelProVendaPorData},
-  uRelProVenda in 'relatorio\uRelProVenda.pas' {frmRelProVenda};
+  uRelProVenda in 'relatorio\uRelProVenda.pas' {frmRelProVenda},
+  uCriptografia in 'criptografia\uCriptografia.pas' {Form1};
 
 {$R *.res}
 
@@ -34,5 +35,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmRelProVenda, frmRelProVenda);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

@@ -142,7 +142,6 @@ object frmRelProVenda: TfrmRelProVenda
           Top = 5
           Width = 55
           Height = 16
-          Alignment = taRightJustify
           DataField = 'vendaId'
           DataSource = dtsVendas
           Font.Charset = DEFAULT_CHARSET
