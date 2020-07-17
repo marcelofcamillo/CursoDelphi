@@ -389,7 +389,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object chkCliente: TCheckBox
         Left = 284
-        Top = 132
+        Top = 131
         Width = 73
         Height = 17
         Caption = 'Cliente'
@@ -403,7 +403,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       end
       object chkVendas: TCheckBox
         Left = 284
-        Top = 159
+        Top = 158
         Width = 73
         Height = 17
         Caption = 'Vendas'

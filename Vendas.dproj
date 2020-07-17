@@ -177,10 +177,12 @@
             <Form>frmRelProVenda</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="criptografia\uCriptografia.pas">
-            <Form>Form1</Form>
+        <DCCReference Include="heranca\uFuncaoCriptografia.pas"/>
+        <DCCReference Include="cadastro\uCadUsuario.pas">
+            <Form>frmCadUsuario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="classes\cCadUsuario.pas"/>
         <None Include="ModelSupport_Vendas\default.txaPackage"/>
         <None Include="ModelSupport_Vendas\default.txvpck"/>
         <BuildConfiguration Include="Release">

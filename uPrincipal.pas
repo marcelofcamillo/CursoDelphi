@@ -7,7 +7,7 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
-  uSelecionarData, uRelProVendaPorData;
+  uSelecionarData, uRelProVendaPorData, uCadUsuario;
 
 type
   TfrmPrincipal = class(TForm)
@@ -30,6 +30,8 @@ type
     Categorias1: TMenuItem;
     FichadeClientes1: TMenuItem;
     ProdutosporCategoria1: TMenuItem;
+    Usurios1: TMenuItem;
+    N5: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -43,6 +45,7 @@ type
     procedure Produto2Click(Sender: TObject);
     procedure ProdutosporCategoria1Click(Sender: TObject);
     procedure Vendapordata1Click(Sender: TObject);
+    procedure Usurios1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -154,6 +157,13 @@ begin
   frmRelCadProdutoComGrupoCategoria := TfrmRelCadProdutoComGrupoCategoria.Create(Self);
   frmRelCadProdutoComGrupoCategoria.relatorio.PreviewModal;
   frmRelCadProdutoComGrupoCategoria.Release;
+end;
+
+procedure TfrmPrincipal.Usurios1Click(Sender: TObject);
+begin
+  frmCadUsuario := TfrmCadUsuario.Create(Self);
+  frmCadUsuario.ShowModal;
+  frmCadUsuario.Release;
 end;
 
 procedure TfrmPrincipal.Vendapordata1Click(Sender: TObject);

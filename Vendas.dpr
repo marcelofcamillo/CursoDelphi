@@ -26,7 +26,9 @@ uses
   uSelecionarData in 'relatorio\uSelecionarData.pas' {frmSelecionarData},
   uRelProVendaPorData in 'relatorio\uRelProVendaPorData.pas' {frmRelProVendaPorData},
   uRelProVenda in 'relatorio\uRelProVenda.pas' {frmRelProVenda},
-  uCriptografia in 'criptografia\uCriptografia.pas' {Form1};
+  uFuncaoCriptografia in 'heranca\uFuncaoCriptografia.pas',
+  uCadUsuario in 'cadastro\uCadUsuario.pas' {frmCadUsuario},
+  cCadUsuario in 'classes\cCadUsuario.pas';
 
 {$R *.res}
 
@@ -34,7 +36,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmRelProVenda, frmRelProVenda);
-  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.
