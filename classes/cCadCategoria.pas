@@ -68,8 +68,11 @@ begin
     qry.ParamByName('categoriaId').AsInteger := F_categoriaId;
 
     try
+      ConexaoDB.StartTransaction;
       qry.ExecSQL;
+      ConexaoDB.Commit;
     except
+      ConexaoDB.Rollback;
       Result := false;
     end;
 
@@ -92,8 +95,11 @@ begin
     qry.ParamByName('categoriaId').AsInteger := Self.F_categoriaId;
 
     try
+      ConexaoDB.StartTransaction;
       qry.ExecSQL;
+      ConexaoDB.Commit;
     except
+      ConexaoDB.Rollback;
       Result := false;
     end;
 
@@ -115,8 +121,11 @@ begin
     qry.ParamByName('descricao').AsString := Self.F_descricao;
 
     try
+      ConexaoDB.StartTransaction;
       qry.ExecSQL;
+      ConexaoDB.Commit;
     except
+      ConexaoDB.Rollback;
       Result := false;
     end;
 

@@ -8,7 +8,7 @@ uses
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
   uSelecionarData, uRelProVendaPorData, uCadUsuario, uLogin, uAlterarSenha, cUsuarioLogado,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls, ZDbcIntfs;
 
 type
   TfrmPrincipal = class(TForm)
@@ -128,6 +128,8 @@ begin
     User := 'sa'; // usuário do banco de dados
     Password := 'mudar@123'; // senha do banco de dados
     Database := 'vendas'; // nome do banco de dados
+    AutoCommit := true;
+    TransactIsolationLevel := tiReadCommitted;
     Connected := true; // conexão com o banco de dados
   end;
 
@@ -262,4 +264,5 @@ begin
   Sleep(100);
 end;
 {$endregion}
+
 end.

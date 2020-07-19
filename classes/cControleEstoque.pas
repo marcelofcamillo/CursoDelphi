@@ -52,8 +52,11 @@ begin
     qry.ParamByName('qtdeBaixa').AsFloat   := quantidade;
 
     try
+      ConexaoDB.StartTransaction;
       qry.ExecSQL;
+      ConexaoDB.Commit;
     except
+      ConexaoDB.Rollback;
       Result := false;
     end;
 
@@ -77,8 +80,11 @@ begin
     qry.ParamByName('qtdeRetorno').AsFloat := quantidade;
 
     try
+      ConexaoDB.StartTransaction;
       qry.ExecSQL;
+      ConexaoDB.Commit;
     except
+      ConexaoDB.Rollback;
       Result := false;
     end;
 

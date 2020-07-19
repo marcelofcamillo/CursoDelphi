@@ -6,6 +6,7 @@ object dtmPrincipal: TdtmPrincipal
     ControlsCodePage = cCP_UTF16
     AutoEncodeStrings = True
     Catalog = ''
+    TransactIsolationLevel = tiReadCommitted
     SQLHourGlass = True
     HostName = '.\SERVERCURSO'
     Port = 0
