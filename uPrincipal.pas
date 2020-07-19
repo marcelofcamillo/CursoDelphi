@@ -8,7 +8,7 @@ uses
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
   uSelecionarData, uRelProVendaPorData, uCadUsuario, uLogin, uAlterarSenha, cUsuarioLogado,
-  Vcl.ComCtrls, ZDbcIntfs;
+  Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados;
 
 type
   TfrmPrincipal = class(TForm)
@@ -228,40 +228,17 @@ begin
 end;
 
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
+var oAtualizarMSSQL: TAtualizaBancoDadosMSSQL;
 begin
-  aForm.chkConexao.Checked := true;
   aForm.Refresh;
-  Sleep(100);
 
-  dtmPrincipal.qryScriptCategorias.ExecSQL;
-  aForm.chkCategoria.Checked := true;
-  aForm.Refresh;
-  Sleep(100);
-
-  dtmPrincipal.qryScriptProdutos.ExecSQL;
-  aForm.chkProduto.Checked := true;
-  aForm.Refresh;
-  Sleep(100);
-
-  dtmPrincipal.qryScriptClientes.ExecSQL;
-  aForm.chkCliente.Checked := true;
-  aForm.Refresh;
-  Sleep(100);
-
-  dtmPrincipal.qryScriptVendas.ExecSQL;
-  aForm.chkVendas.Checked := true;
-  aForm.Refresh;
-  Sleep(100);
-
-  dtmPrincipal.qryScriptItensVendas.ExecSQL;
-  aForm.chkItensVenda.Checked := true;
-  aForm.Refresh;
-  Sleep(100);
-
-  dtmPrincipal.qryScriptUsuarios.ExecSQL;
-  aForm.chkUsuarios.Checked := true;
-  aForm.Refresh;
-  Sleep(100);
+  try
+    oAtualizarMSSQL := TAtualizaBancoDadosMSSQL.Create(dtmPrincipal.ConexaoDB);
+    oAtualizarMSSQL.AtualizarBancoDeDadosMSSQL;
+  finally
+    if Assigned(oAtualizarMSSQL) then
+       FreeAndNil(oAtualizarMSSQL);
+  end;
 end;
 {$endregion}
 

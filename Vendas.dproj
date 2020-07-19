@@ -192,6 +192,9 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="classes\cUsuarioLogado.pas"/>
+        <DCCReference Include="classes\cAtualizacaoBancoDeDados.pas"/>
+        <DCCReference Include="classes\cAtualizacaoCampoMSSQL.pas"/>
+        <DCCReference Include="classes\cAtualizacaoTabelaMSSQL.pas"/>
         <None Include="ModelSupport_Vendas\default.txaPackage"/>
         <None Include="ModelSupport_Vendas\default.txvpck"/>
         <BuildConfiguration Include="Release">
