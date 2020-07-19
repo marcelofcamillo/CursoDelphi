@@ -183,6 +183,15 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="classes\cCadUsuario.pas"/>
+        <DCCReference Include="login\uLogin.pas">
+            <Form>frmLogin</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="login\uAlterarSenha.pas">
+            <Form>frmAlterarSenha</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="classes\cUsuarioLogado.pas"/>
         <None Include="ModelSupport_Vendas\default.txaPackage"/>
         <None Include="ModelSupport_Vendas\default.txvpck"/>
         <BuildConfiguration Include="Release">

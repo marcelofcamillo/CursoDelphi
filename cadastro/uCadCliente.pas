@@ -97,6 +97,7 @@ begin
     edtEndereco.Text := oCliente.endereco;
     edtBairro.Text := oCliente.bairro;
     edtCidade.Text := oCliente.cidade;
+    edtEstado.Text := oCliente.estado;
     edtTelefone.Text := oCliente.telefone;
     edtEmail.Text := oCliente.email;
     edtDataNascimento.Date := oCliente.dataNascimento;

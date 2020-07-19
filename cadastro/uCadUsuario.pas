@@ -77,7 +77,7 @@ begin
   if oUsuario.UsuarioExiste(edtNome.Text) then begin
     MessageDlg('Usuário já cadastrado!', mtInformation, [mbok], 0);
     edtNome.SetFocus;
-    abort;
+    Abort;
   end;
 
   if edtUsuarioId.Text <> EmptyStr then

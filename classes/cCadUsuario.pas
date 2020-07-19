@@ -2,8 +2,9 @@ unit cCadUsuario;
 
 interface
 
-uses System.Classes, Vcl.Controls, Vcl.ExtCtrls, Vcl.Dialogs, ZAbstractConnection, ZConnection,
-     ZAbstractRODataset, ZAbstractDataset, ZDataset, System.SysUtils, uFuncaoCriptografia;
+uses System.Classes, Vcl.Controls, Vcl.ExtCtrls, Vcl.Dialogs, ZAbstractConnection,
+     ZConnection, ZAbstractRODataset, ZAbstractDataset, ZDataset, System.SysUtils,
+     uFuncaoCriptografia;
 
 type
   TUsuario = class
@@ -24,6 +25,7 @@ type
     function Selecionar(id: Integer): Boolean;
     function Logar(aUsuario, aSenha: String): Boolean;
     function UsuarioExiste(aUsuario: String): Boolean;
+    function AlterarSenha: Boolean;
   published
     property codigo : Integer read F_usuarioId write F_usuarioId;
     property nome   : String  read F_nome      write F_nome;
@@ -53,7 +55,7 @@ var qry: TZQuery;
 begin
   if MessageDlg('Apagar o Registro: ' +#13+#13+
                 'Código: ' + IntToStr(F_usuarioId) +#13+
-                'Nome: ' + F_nome, mtConfirmation, [mbYes, mbNo], 0) = mrNo then begin
+                'Nome: '  + F_nome, mtConfirmation, [mbYes, mbNo], 0) = mrNo then begin
      Result := false;
      Abort;
   end;
@@ -86,7 +88,7 @@ begin
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('UPDATE usuarios SET nome = :nome, senha = :senha WHERE usuarioId = :usuarioId');
+    qry.SQL.Add('UPDATE usuarios SET nome = :nome, senha =:senha WHERE usuarioId = :usuarioId');
     qry.ParamByName('usuarioId').AsInteger := Self.F_usuarioId;
     qry.ParamByName('nome').AsString       := Self.F_nome;
     qry.ParamByName('senha').AsString      := Self.F_Senha;
@@ -111,7 +113,7 @@ begin
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('INSERT INTO usuarios (nome, senha) VALUES (:nome, :senha)');
+    qry.SQL.Add('INSERT INTO usuarios (nome, senha ) VALUES (:nome, :senha)');
     qry.ParamByName('nome').AsString  := Self.F_nome;
     qry.ParamByName('senha').AsString := Self.F_senha;
 
@@ -167,10 +169,10 @@ begin
     try
       qry.Open;
 
-      if qry.FieldByName('Qtde').AsInteger > 0 then
-         Result := true
+      if Qry.FieldByName('Qtde').AsInteger > 0 then
+         result := true
       else
-         Result := false;
+         result := false;
 
     except
       Result := false;
@@ -203,15 +205,19 @@ begin
     qry := TZQuery.Create(nil);
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('SELECT COUNT(usuarioId) AS Qtde FROM usuarios WHERE nome = :nome AND senha = :senha');
+    qry.SQL.Add('SELECT usuarioId, nome, senha FROM usuarios WHERE nome = :nome AND senha = :senha');
     qry.ParamByName('nome').AsString  := aUsuario;
     qry.ParamByName('senha').AsString := Criptografar(aSenha);
 
     try
       qry.Open;
 
-      if qry.FieldByName('Qtde').AsInteger > 0 then
-         Result := true
+      if qry.FieldByName('usuarioId').AsInteger > 0 then begin
+         Result := true;
+         F_usuarioId := qry.FieldByName('usuarioId').AsInteger;
+         F_nome      := qry.FieldByName('nome').AsString;
+         F_senha     := qry.FieldByName('senha').AsString;
+      end
       else
          Result := false;
 
@@ -225,4 +231,31 @@ begin
   end;
 end;
 {$endregion}
+
+{$region 'ALTERAÇÃO DE SENHA'}
+function TUsuario.AlterarSenha: Boolean;
+var qry: TZQuery;
+begin
+  try
+    Result := true;
+    qry := TZQuery.Create(nil);
+    qry.Connection := ConexaoDB;
+    qry.SQL.Clear;
+    qry.SQL.Add('UPDATE usuarios SET senha = :senha WHERE usuarioId = :usuarioId');
+    qry.ParamByName('usuarioId').AsInteger := Self.F_usuarioId;
+    qry.ParamByName('senha').AsString      := Self.F_Senha;
+
+    try
+      qry.ExecSQL;
+    except
+      Result := false;
+    end;
+
+  finally
+    if Assigned(qry) then
+       FreeAndNil(qry);
+  end;
+end;
+{$endregion}
+
 end.

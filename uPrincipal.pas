@@ -7,7 +7,8 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
-  uSelecionarData, uRelProVendaPorData, uCadUsuario;
+  uSelecionarData, uRelProVendaPorData, uCadUsuario, uLogin, uAlterarSenha, cUsuarioLogado,
+  Vcl.ComCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -32,6 +33,8 @@ type
     ProdutosporCategoria1: TMenuItem;
     Usurios1: TMenuItem;
     N5: TMenuItem;
+    Alterarsenha1: TMenuItem;
+    stbPrincipal: TStatusBar;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -46,6 +49,8 @@ type
     procedure ProdutosporCategoria1Click(Sender: TObject);
     procedure Vendapordata1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Alterarsenha1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -56,6 +61,7 @@ type
 
 var
   frmPrincipal: TfrmPrincipal;
+  oUsuarioLogado: TUsuarioLogado;
 
 implementation
 
@@ -101,6 +107,9 @@ procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FreeAndNil(TeclaEnter);
   FreeAndNil(dtmPrincipal);
+
+  if Assigned(oUsuarioLogado) then
+     FreeAndNil(oUsuarioLogado);
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
@@ -130,6 +139,21 @@ begin
   TeclaEnter.FocusEnabled := true;
   TeclaEnter.FocusColor := clInfoBk; // cor (amarelo claro)
 end;
+
+procedure TfrmPrincipal.FormShow(Sender: TObject);
+begin
+  try
+    oUsuarioLogado := TUsuarioLogado.Create;
+
+    frmLogin := TfrmLogin.Create(Self);
+    frmLogin.ShowModal;
+
+  finally
+    frmLogin.Release;
+    stbPrincipal.Panels[0].Text := 'Usuário: ' + oUsuarioLogado.nome;
+  end;
+end;
+
 {$endregion}
 
 {$region 'BOTÕES'}
@@ -194,6 +218,13 @@ end;
 {$endregion}
 
 {$region 'FUNÇÕES E PROCEDURES'}
+procedure TfrmPrincipal.Alterarsenha1Click(Sender: TObject);
+begin
+  frmAlterarSenha := TfrmAlterarSenha.Create(Self);
+  frmAlterarSenha.ShowModal;
+  frmAlterarSenha.Release;
+end;
+
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
 begin
   aForm.chkConexao.Checked := true;

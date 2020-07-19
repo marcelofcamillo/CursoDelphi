@@ -63,9 +63,9 @@ inherited frmCadUsuario: TfrmCadUsuario
         Top = 80
         Width = 501
         Height = 21
-        EditLabel.Width = 27
+        EditLabel.Width = 36
         EditLabel.Height = 13
-        EditLabel.Caption = 'Nome'
+        EditLabel.Caption = 'Usu'#225'rio'
         MaxLength = 50
         TabOrder = 1
       end
@@ -107,7 +107,7 @@ inherited frmCadUsuario: TfrmCadUsuario
       ReadOnly = True
     end
     object qryListagemnome: TWideStringField
-      DisplayLabel = 'Nome'
+      DisplayLabel = 'Usu'#225'rio'
       FieldName = 'nome'
       Required = True
       Size = 50
