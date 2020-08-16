@@ -14,7 +14,7 @@ object dtmPrincipal: TdtmPrincipal
     User = 'sa'
     Password = 'mudar@123'
     Protocol = 'mssql'
-    LibraryLocation = 'C:\CursoDelphi\ntwdblib.dll'
+    LibraryLocation = 'D:\Cursos\CursoDelphi\ntwdblib.dll'
     Left = 24
     Top = 16
   end

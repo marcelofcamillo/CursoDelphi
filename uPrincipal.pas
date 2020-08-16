@@ -8,7 +8,7 @@ uses
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
   uSelecionarData, uRelProVendaPorData, uCadUsuario, uLogin, uAlterarSenha, cUsuarioLogado,
-  Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados;
+  Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados, uCadAcaoAcesso;
 
 type
   TfrmPrincipal = class(TForm)
@@ -35,6 +35,8 @@ type
     N5: TMenuItem;
     Alterarsenha1: TMenuItem;
     stbPrincipal: TStatusBar;
+    AodeAcesso1: TMenuItem;
+    N6: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -51,6 +53,7 @@ type
     procedure Usurios1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Alterarsenha1Click(Sender: TObject);
+    procedure AodeAcesso1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -122,7 +125,7 @@ begin
   with dtmPrincipal.ConexaoDB do begin
     SQLHourGlass := false; // muda a ampulheta quando processar o banco
     Protocol := 'mssql'; // protocolo
-    LibraryLocation := 'C:\CursoDelphi\ntwdblib.dll'; // biblioteca
+    LibraryLocation := 'D:\Cursos\CursoDelphi\ntwdblib.dll'; // biblioteca
     HostName := '.\SERVERCURSO'; // hostname
     Port := 1433; // porta do sql
     User := 'sa'; // usuário do banco de dados
@@ -225,6 +228,13 @@ begin
   frmAlterarSenha := TfrmAlterarSenha.Create(Self);
   frmAlterarSenha.ShowModal;
   frmAlterarSenha.Release;
+end;
+
+procedure TfrmPrincipal.AodeAcesso1Click(Sender: TObject);
+begin
+  frmCadAcaoAcesso := TfrmCadAcaoAcesso.Create(Self);
+  frmCadAcaoAcesso.ShowModal;
+  frmCadAcaoAcesso.Release;
 end;
 
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm: TfrmAtualizaDB);

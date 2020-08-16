@@ -24,6 +24,7 @@ type
     procedure Vendas;
     procedure VendasItens;
     procedure Usuario;
+    procedure AcaoAcesso;
 end;
 
 implementation
@@ -39,6 +40,7 @@ begin
   Vendas;
   VendasItens;
   Usuario;
+  AcaoAcesso;
 end;
 
 destructor TAtualizacaoTableMSSQL.Destroy;
@@ -93,6 +95,21 @@ begin
   finally
     if Assigned(oUsuario) then
        FreeAndNil(oUsuario);
+  end;
+end;
+
+procedure TAtualizacaoTableMSSQL.AcaoAcesso;
+begin
+  if not TabelaExiste('acaoAcesso') then
+  begin
+    ExecutaDiretoBancoDeDados(
+      'CREATE TABLE acaoAcesso ( '+
+      '	 acaoAcessoId INT IDENTITY(1,1) NOT NULL, '+
+      '	 descricao VARCHAR(100) NOT NULL, '+
+      '	 chave VARCHAR(60) NOT NULL UNIQUE, '+
+      '	 PRIMARY KEY (acaoAcessoId) '+
+      '	) '
+    );
   end;
 end;
 

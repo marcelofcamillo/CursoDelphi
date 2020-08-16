@@ -195,6 +195,11 @@
         <DCCReference Include="classes\cAtualizacaoBancoDeDados.pas"/>
         <DCCReference Include="classes\cAtualizacaoCampoMSSQL.pas"/>
         <DCCReference Include="classes\cAtualizacaoTabelaMSSQL.pas"/>
+        <DCCReference Include="cadastro\uCadAcaoAcesso.pas">
+            <Form>frmCadAcaoAcesso</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="classes\cAcaoAcesso.pas"/>
         <None Include="ModelSupport_Vendas\default.txaPackage"/>
         <None Include="ModelSupport_Vendas\default.txvpck"/>
         <BuildConfiguration Include="Release">
