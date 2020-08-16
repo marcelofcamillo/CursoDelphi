@@ -1,4 +1,4 @@
-unit uRelCategoria;
+unit uRelCadCategoria;
 
 interface
 

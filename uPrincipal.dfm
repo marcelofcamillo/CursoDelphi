@@ -62,9 +62,9 @@ object frmPrincipal: TfrmPrincipal
       object N6: TMenuItem
         Caption = '-'
       end
-      object AodeAcesso1: TMenuItem
+      object AcaodeAcesso1: TMenuItem
         Caption = 'A'#231#227'o de Acesso'
-        OnClick = AodeAcesso1Click
+        OnClick = AcaodeAcesso1Click
       end
       object N2: TMenuItem
         Caption = '-'

@@ -5,10 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
-  uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCategoria,
+  uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCadCategoria,
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
   uSelecionarData, uRelProVendaPorData, uCadUsuario, uLogin, uAlterarSenha, cUsuarioLogado,
-  Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados, uCadAcaoAcesso;
+  Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados, uCadAcaoAcesso, cAcaoAcesso;
 
 type
   TfrmPrincipal = class(TForm)
@@ -35,7 +35,7 @@ type
     N5: TMenuItem;
     Alterarsenha1: TMenuItem;
     stbPrincipal: TStatusBar;
-    AodeAcesso1: TMenuItem;
+    AcaodeAcesso1: TMenuItem;
     N6: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -53,7 +53,7 @@ type
     procedure Usurios1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Alterarsenha1Click(Sender: TObject);
-    procedure AodeAcesso1Click(Sender: TObject);
+    procedure AcaodeAcesso1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -80,9 +80,9 @@ end;
 
 procedure TfrmPrincipal.Categorias1Click(Sender: TObject);
 begin
-  frmRelCategoria := TfrmRelCategoria.Create(Self);
-  frmRelCategoria.relatorio.PreviewModal;
-  frmRelCategoria.Release;
+  frmRelCadCategoria := TfrmRelCadCategoria.Create(Self);
+  frmRelCadCategoria.relatorio.PreviewModal;
+  frmRelCadCategoria.Release;
 end;
 
 procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
@@ -137,6 +137,20 @@ begin
   end;
 
   AtualizacaoBancoDados(frmAtualizaDB);
+
+  TAcaoAcesso.CriarAcoes(TfrmCadCategoria, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmCadCliente, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmCadProduto, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmCadUsuario, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmCadAcaoAcesso, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmAlterarSenha, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmProVenda, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmRelProVendaPorData, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmRelCadClienteFicha, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmRelCadCliente, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmRelCadProdutoComGrupoCategoria, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmRelCadProduto, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmRelCadCategoria, dtmPrincipal.ConexaoDB);
 
   frmAtualizaDB.Free;
 
@@ -230,7 +244,7 @@ begin
   frmAlterarSenha.Release;
 end;
 
-procedure TfrmPrincipal.AodeAcesso1Click(Sender: TObject);
+procedure TfrmPrincipal.AcaodeAcesso1Click(Sender: TObject);
 begin
   frmCadAcaoAcesso := TfrmCadAcaoAcesso.Create(Self);
   frmCadAcaoAcesso.ShowModal;
