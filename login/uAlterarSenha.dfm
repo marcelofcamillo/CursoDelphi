@@ -2,7 +2,7 @@ object frmAlterarSenha: TfrmAlterarSenha
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'Alterar Senha'
+  Caption = 'Altera'#231#227'o de Senha para Usu'#225'rio Logado'
   ClientHeight = 206
   ClientWidth = 311
   Color = clBtnFace

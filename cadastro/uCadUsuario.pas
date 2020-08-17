@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB, ZAbstractRODataset, ZAbstractDataset,
   ZDataset, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls,
-  Vcl.ComCtrls, cCadUsuario, uEnum, uDTMConexao;
+  Vcl.ComCtrls, cCadUsuario, uEnum, uDTMConexao, cAcaoAcesso;
 
 type
   TfrmCadUsuario = class(TfrmTelaHeranca)
@@ -53,6 +53,8 @@ begin
      Result := oUsuario.Inserir
   else if EstadoDoCadastro = ecAlterar then
      Result := oUsuario.Atualizar;
+
+  TAcaoAcesso.PreencherUsuariosVsAcoes(dtmPrincipal.ConexaoDB);
 end;
 {$endregion}
 

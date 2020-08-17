@@ -42,6 +42,7 @@ type
     procedure grdListagemDblClick(Sender: TObject);
     procedure grdListagemKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
@@ -69,6 +70,7 @@ var
 
 implementation
 
+uses uPrincipal;
 {$R *.dfm}
 
 {$region 'OBSERVAÇÕES'}
@@ -228,12 +230,24 @@ end;
 {$region 'BOTÕES'}
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
 begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, dtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: ' +oUsuarioLogado.nome + ', não tem permissão de acesso!', mtWarning, [mbOK], 0);
+     Abort;
+  end;
+
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
   EstadoDoCadastro := ecAlterar;
 end;
 
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, dtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: ' +oUsuarioLogado.nome + ', não tem permissão de acesso!', mtWarning, [mbOK], 0);
+     Abort;
+  end;
+
   try
     if Apagar then begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
@@ -264,6 +278,12 @@ end;
 
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, dtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: ' +oUsuarioLogado.nome + ', não tem permissão de acesso!', mtWarning, [mbOK], 0);
+     Abort;
+  end;
+
   if ExisteCampoObrigatorio then
     Abort;
 
@@ -285,10 +305,25 @@ end;
 
 procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, dtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: ' +oUsuarioLogado.nome + ', não tem permissão de acesso!', mtWarning, [mbOK], 0);
+     Abort;
+  end;
+
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
   EstadoDoCadastro := ecInserir;
   LimparEdits;
 end;
+procedure TfrmTelaHeranca.btnPesquisarClick(Sender: TObject);
+begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, dtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: ' +oUsuarioLogado.nome + ', não tem permissão de acesso!', mtWarning, [mbOK], 0);
+     Abort;
+  end;
+end;
+
 {$endregion}
 
 {$region 'EVENTS'}

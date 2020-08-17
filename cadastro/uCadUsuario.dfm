@@ -9,14 +9,14 @@ inherited frmCadUsuario: TfrmCadUsuario
   inherited pgcPrincipal: TPageControl
     Width = 691
     Height = 268
-    ActivePage = tabManutencao
+    ExplicitWidth = 691
+    ExplicitHeight = 268
     inherited tabListagem: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 726
-      ExplicitHeight = 375
+      ExplicitWidth = 683
+      ExplicitHeight = 240
       inherited pnlListagemTopo: TPanel
         Width = 683
+        ExplicitWidth = 683
       end
       inherited grdListagem: TDBGrid
         Width = 683
@@ -40,10 +40,8 @@ inherited frmCadUsuario: TfrmCadUsuario
       end
     end
     inherited tabManutencao: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 726
-      ExplicitHeight = 375
+      ExplicitWidth = 683
+      ExplicitHeight = 240
       object edtUsuarioId: TLabeledEdit
         Tag = 1
         Left = 12
@@ -86,10 +84,11 @@ inherited frmCadUsuario: TfrmCadUsuario
   inherited pnlRodape: TPanel
     Top = 268
     Width = 691
-    ExplicitTop = 405
+    ExplicitTop = 268
     ExplicitWidth = 691
     inherited btnFechar: TBitBtn
       Left = 600
+      ExplicitLeft = 600
     end
     inherited btnNavigator: TDBNavigator
       Left = 429

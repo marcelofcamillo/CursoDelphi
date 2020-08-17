@@ -88,6 +88,7 @@ object frmTelaHeranca: TfrmTelaHeranca
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           TabOrder = 1
           Visible = False
+          OnClick = btnPesquisarClick
         end
       end
       object grdListagem: TDBGrid

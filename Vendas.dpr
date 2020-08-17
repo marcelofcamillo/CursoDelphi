@@ -22,7 +22,7 @@ uses
   uRelCadClienteFicha in 'relatorio\uRelCadClienteFicha.pas' {frmRelCadClienteFicha},
   uRelCadProduto in 'relatorio\uRelCadProduto.pas' {frmRelCadProduto},
   uRelCadProdutoComGrupoCategoria in 'relatorio\uRelCadProdutoComGrupoCategoria.pas' {frmRelCadProdutoComGrupoCategoria},
-  uRelCategoria in 'relatorio\uRelCategoria.pas' {frmRelCategoria},
+  uRelCadCategoria in 'relatorio\uRelCadCategoria.pas' {frmRelCadCategoria},
   uSelecionarData in 'relatorio\uSelecionarData.pas' {frmSelecionarData},
   uRelProVendaPorData in 'relatorio\uRelProVendaPorData.pas' {frmRelProVendaPorData},
   uRelProVenda in 'relatorio\uRelProVenda.pas' {frmRelProVenda},
@@ -36,7 +36,8 @@ uses
   cAtualizacaoCampoMSSQL in 'classes\cAtualizacaoCampoMSSQL.pas',
   cAtualizacaoTabelaMSSQL in 'classes\cAtualizacaoTabelaMSSQL.pas',
   uCadAcaoAcesso in 'cadastro\uCadAcaoAcesso.pas' {frmCadAcaoAcesso},
-  cAcaoAcesso in 'classes\cAcaoAcesso.pas';
+  cAcaoAcesso in 'classes\cAcaoAcesso.pas',
+  uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes};
 
 {$R *.res}
 
@@ -44,5 +45,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmUsuarioVsAcoes, frmUsuarioVsAcoes);
   Application.Run;
 end.

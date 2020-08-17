@@ -161,8 +161,8 @@
             <Form>frmRelCadProdutoComGrupoCategoria</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="relatorio\uRelCategoria.pas">
-            <Form>frmRelCategoria</Form>
+        <DCCReference Include="relatorio\uRelCadCategoria.pas">
+            <Form>frmRelCadCategoria</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="relatorio\uSelecionarData.pas">
@@ -200,6 +200,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="classes\cAcaoAcesso.pas"/>
+        <DCCReference Include="login\uUsuarioVsAcoes.pas">
+            <Form>frmUsuarioVsAcoes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_Vendas\default.txaPackage"/>
         <None Include="ModelSupport_Vendas\default.txvpck"/>
         <BuildConfiguration Include="Release">

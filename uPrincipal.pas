@@ -9,7 +9,7 @@ uses
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
   uSelecionarData, uRelProVendaPorData, uCadUsuario, uLogin, uAlterarSenha, cUsuarioLogado,
   Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados, uCadAcaoAcesso, cAcaoAcesso,
-  uTelaHeranca, RLReport;
+  uTelaHeranca, RLReport, uUsuarioVsAcoes;
 
 type
   TfrmPrincipal = class(TForm)
@@ -38,6 +38,7 @@ type
     stbPrincipal: TStatusBar;
     AcaodeAcesso1: TMenuItem;
     N6: TMenuItem;
+    UsuriosvsAes1: TMenuItem;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -55,6 +56,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure Alterarsenha1Click(Sender: TObject);
     procedure AcaodeAcesso1Click(Sender: TObject);
+    procedure UsuriosvsAes1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -144,6 +146,7 @@ begin
   TAcaoAcesso.CriarAcoes(TfrmRelCadProdutoComGrupoCategoria, dtmPrincipal.ConexaoDB);
   TAcaoAcesso.CriarAcoes(TfrmRelCadProduto, dtmPrincipal.ConexaoDB);
   TAcaoAcesso.CriarAcoes(TfrmRelCadCategoria, dtmPrincipal.ConexaoDB);
+  TAcaoAcesso.CriarAcoes(TfrmUsuarioVsAcoes, dtmPrincipal.ConexaoDB);
 
   TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);
 
@@ -196,29 +199,41 @@ begin
   CriarForm(TfrmCadUsuario);
 end;
 
-procedure TfrmPrincipal.Vendapordata1Click(Sender: TObject);
+procedure TfrmPrincipal.UsuriosvsAes1Click(Sender: TObject);
 begin
+  CriarForm(TfrmUsuarioVsAcoes);
+end;
+
+procedure TfrmPrincipal.Vendapordata1Click(Sender: TObject);
+begin  
   try
     frmSelecionarData := TfrmSelecionarData.Create(Self);
-    frmSelecionarData.ShowModal;
+    
+    if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, frmSelecionarData.Name, dtmPrincipal.ConexaoDB) then
+    begin
+      frmSelecionarData.ShowModal;
 
-    frmRelProVendaPorData := TfrmRelProVendaPorData.Create(Self);
-    frmRelProVendaPorData.qryVendas.Close;
-    frmRelProVendaPorData.qryVendas.ParamByName('dataInicial').AsDate := frmSelecionarData.edtDataInicial.Date;
-    frmRelProVendaPorData.qryVendas.ParamByName('dataFinal').AsDate := frmSelecionarData.edtDataFinal.Date;
-    frmRelProVendaPorData.qryVendas.Open;
-    frmRelProVendaPorData.relatorio.PreviewModal;
+      frmRelProVendaPorData := TfrmRelProVendaPorData.Create(Self);
+      frmRelProVendaPorData.qryVendas.Close;
+      frmRelProVendaPorData.qryVendas.ParamByName('dataInicial').AsDate := frmSelecionarData.edtDataInicial.Date;
+      frmRelProVendaPorData.qryVendas.ParamByName('dataFinal').AsDate := frmSelecionarData.edtDataFinal.Date;
+      frmRelProVendaPorData.qryVendas.Open;
+      frmRelProVendaPorData.relatorio.PreviewModal;
+    end
+    else begin
+       MessageDlg('Usuário: ' +oUsuarioLogado.nome+ ' não tem permissão de acesso!', mtWarning, [mbOK], 0);
+    end;
   finally
-    frmSelecionarData.Release;
-    frmRelProVendaPorData.Release;
+    if Assigned(frmSelecionarData) then
+      frmSelecionarData.Release;
+    if Assigned(frmRelProVendaPorData) then
+      frmRelProVendaPorData.Release;
   end;
 end;
 
 procedure TfrmPrincipal.Vendas1Click(Sender: TObject);
 begin
-  frmProVenda := TfrmProVenda.Create(Self);
-  frmProVenda.ShowModal;
-  frmProVenda.Release;
+  CriarForm(TfrmProVenda);
 end;
 
 {$endregion}
@@ -253,13 +268,13 @@ var form: TForm;
 begin
   try
     form := aNomeForm.Create(Application);
-    //if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name, dtmPrincipal.ConexaoDB) then
-    //begin
+    if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name, dtmPrincipal.ConexaoDB) then
+    begin
       form.ShowModal;
-    {end
+    end
     else begin
        MessageDlg('Usuário: ' +oUsuarioLogado.nome+ ' não tem permissão de acesso!', mtWarning, [mbOK], 0);
-    end;    }
+    end;
   finally
     if Assigned(form) then
        form.Release;
@@ -273,8 +288,8 @@ var form: TForm;
 begin
   try
     form := aNomeForm.Create(Application);
-    //if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name,DtmPrincipal.ConexaoDB) then
-    //begin
+    if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name,DtmPrincipal.ConexaoDB) then
+    begin
       for I := 0 to form.ComponentCount-1 do
       begin
         if form.Components[i] is TRLReport then
@@ -283,10 +298,10 @@ begin
            Break;
         end;
       end;
-    {end
+    end
     else begin
-       MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso',mtWarning,[mbOK],0);
-    end;    }
+       MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso!',mtWarning,[mbOK],0);
+    end;
   finally
     if Assigned(form) then
        form.Release;

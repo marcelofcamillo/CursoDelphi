@@ -7,6 +7,7 @@ object dtmPrincipal: TdtmPrincipal
     AutoEncodeStrings = True
     Catalog = ''
     TransactIsolationLevel = tiReadCommitted
+    Connected = True
     SQLHourGlass = True
     HostName = '.\SERVERCURSO'
     Port = 0
