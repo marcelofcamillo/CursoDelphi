@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.Mask, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, ZAbstractRODataset, ZAbstractDataset,
-  ZDataset, uDTMConexao, uEnum, RxToolEdit, RxCurrEdit;
+  ZDataset, uDTMConexao, uEnum, RxToolEdit, RxCurrEdit, ZConnection;
 
 type
   TfrmTelaHeranca = class(TForm)
@@ -60,6 +60,8 @@ type
     function Apagar: Boolean; virtual;
     function Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean; virtual;
     procedure bloqueiaCTRL_DEL_DBGrid(var key: Word; shift: TShiftState);
+    class function TenhoAcesso(aUsuarioId: Integer; aChave: String; aConexao: TZConnection): Boolean; static;
+
   end;
 
 var
@@ -164,6 +166,42 @@ begin
       TDateEdit(Components[i]).Date := 0
     else if Components[i] is TMaskEdit then
       TMaskEdit(Components[i]).Text := EmptyStr;
+  end;
+end;
+
+procedure TfrmTelaHeranca.mskPesquisaChange(Sender: TObject);
+begin
+  QryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text,[loPartialKey])
+end;
+
+procedure TfrmTelaHeranca.bloqueiaCTRL_DEL_DBGrid(var Key: Word; Shift: TShiftState);
+begin
+  // bloqueia o CRTL + DEL
+  if (Shift = [ssCtrl]) and (Key = 46) then
+    Key := 0;
+end;
+
+class function TfrmTelaHeranca.TenhoAcesso(aUsuarioId: Integer; aChave: String; aConexao: TZConnection): Boolean;
+var qry: TZQuery;
+begin
+  try
+    Result := true;
+    qry := TZQuery.Create(nil);
+    qry.Connection := aConexao;
+    qry.SQL.Clear;
+    qry.SQL.Add('SELECT usuarioId FROM usuariosAcaoAcesso WHERE usuarioId = :usuarioId '+
+                'AND acaoAcessoId = (SELECT TOP 1 acaoAcessoId FROM acaoAcesso '+
+                'WHERE chave = :chave) AND ativo = 1');
+    qry.ParamByName('usuarioId').AsInteger := aUsuarioId;
+    qry.ParamByName('chave').AsString      := aChave;
+    qry.Open;
+
+    if qry.IsEmpty then
+       Result := false
+
+  finally
+    if Assigned(qry) then
+       FreeAndNil(qry);
   end;
 end;
 {$endregion}
@@ -307,17 +345,5 @@ begin
   qryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text, [loPartialKey]);
 end;
 {$endregion}
-
-procedure TfrmTelaHeranca.mskPesquisaChange(Sender: TObject);
-begin
-  QryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text,[loPartialKey])
-end;
-
-procedure TfrmTelaHeranca.bloqueiaCTRL_DEL_DBGrid(var Key: Word; Shift: TShiftState);
-begin
-  // bloqueia o CRTL + DEL
-  if (Shift = [ssCtrl]) and (Key = 46) then
-    Key := 0;
-end;
 
 end.

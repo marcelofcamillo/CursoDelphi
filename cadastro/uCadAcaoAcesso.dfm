@@ -4,11 +4,13 @@ inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     ActivePage = tabManutencao
+    inherited tabListagem: TTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+    end
     inherited tabManutencao: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 726
-      ExplicitHeight = 375
       object edtDescricao: TLabeledEdit
         Tag = 2
         Left = 12

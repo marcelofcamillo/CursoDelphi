@@ -1,4 +1,4 @@
-object frmRelCategoria: TfrmRelCategoria
+object frmRelCadCategoria: TfrmRelCadCategoria
   Left = 0
   Top = 0
   Caption = 'Relat'#243'rio de Categorias'
