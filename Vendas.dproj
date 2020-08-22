@@ -204,6 +204,11 @@
             <Form>frmUsuarioVsAcoes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="datamodule\uDTMGrafico.pas">
+            <Form>dtmGrafico</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <None Include="ModelSupport_Vendas\default.txaPackage"/>
         <None Include="ModelSupport_Vendas\default.txvpck"/>
         <BuildConfiguration Include="Release">

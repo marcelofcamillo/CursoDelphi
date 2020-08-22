@@ -37,7 +37,8 @@ uses
   cAtualizacaoTabelaMSSQL in 'classes\cAtualizacaoTabelaMSSQL.pas',
   uCadAcaoAcesso in 'cadastro\uCadAcaoAcesso.pas' {frmCadAcaoAcesso},
   cAcaoAcesso in 'classes\cAcaoAcesso.pas',
-  uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes};
+  uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes},
+  uDTMGrafico in 'datamodule\uDTMGrafico.pas' {dtmGrafico: TDataModule};
 
 {$R *.res}
 
@@ -45,6 +46,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmUsuarioVsAcoes, frmUsuarioVsAcoes);
   Application.Run;
 end.

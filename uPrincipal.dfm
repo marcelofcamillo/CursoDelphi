@@ -2,8 +2,8 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Menu Principal'
-  ClientHeight = 201
-  ClientWidth = 447
+  ClientHeight = 467
+  ClientWidth = 914
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,17 +20,103 @@ object frmPrincipal: TfrmPrincipal
   TextHeight = 13
   object stbPrincipal: TStatusBar
     Left = 0
-    Top = 182
-    Width = 447
+    Top = 448
+    Width = 914
     Height = 19
     Panels = <
       item
         Width = 150
       end>
+    ExplicitTop = 182
+    ExplicitWidth = 447
+  end
+  object gridPanel: TGridPanel
+    Left = 0
+    Top = 41
+    Width = 914
+    Height = 407
+    Align = alClient
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = DBChart1
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    TabOrder = 1
+    ExplicitLeft = 448
+    ExplicitTop = 128
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object DBChart1: TDBChart
+      Left = 1
+      Top = 1
+      Width = 456
+      Height = 202
+      Title.Text.Strings = (
+        'Produto em Estoque')
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 288
+      ExplicitTop = 80
+      ExplicitWidth = 400
+      ExplicitHeight = 250
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series1: TBarSeries
+        ColorEachPoint = True
+        Marks.Visible = False
+        DataSource = dtmGrafico.qryProdutoEstoque
+        Title = 'ProdutoEstoque'
+        XLabelsSource = 'Label'
+        XValues.Name = 'X'
+        XValues.Order = loAscending
+        YValues.Name = 'Bar'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 914
+    Height = 41
+    Align = alTop
+    TabOrder = 2
+    ExplicitLeft = 584
+    ExplicitTop = 32
+    ExplicitWidth = 185
+    object Label1: TLabel
+      Left = 11
+      Top = 7
+      Width = 114
+      Height = 25
+      Caption = 'Dashboard'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
   end
   object mainPrincipal: TMainMenu
-    Left = 328
-    Top = 24
+    Left = 856
+    Top = 8
     object Cadsatro1: TMenuItem
       Caption = 'Cadastro'
       object Cliente1: TMenuItem

@@ -8,8 +8,10 @@ uses
   uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCadCategoria,
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
   uSelecionarData, uRelProVendaPorData, uCadUsuario, uLogin, uAlterarSenha, cUsuarioLogado,
-  Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados, uCadAcaoAcesso, cAcaoAcesso,
-  uTelaHeranca, RLReport, uUsuarioVsAcoes;
+  Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados, uCadAcaoAcesso, cAcaoAcesso, uDTMGrafico,
+  uTelaHeranca, RLReport, uUsuarioVsAcoes, Vcl.ExtCtrls, VclTee.TeeGDIPlus,
+  Data.DB, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs, VCLTee.Chart,
+  VCLTee.DBChart, Vcl.StdCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -39,6 +41,11 @@ type
     AcaodeAcesso1: TMenuItem;
     N6: TMenuItem;
     UsuriosvsAes1: TMenuItem;
+    gridPanel: TGridPanel;
+    Panel1: TPanel;
+    DBChart1: TDBChart;
+    Label1: TLabel;
+    Series1: TBarSeries;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -63,6 +70,7 @@ type
     procedure AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
     procedure CriarForm(aNomeForm: TFormClass);
     procedure CriarRelatorio(aNomeForm: TFormClass);
+    procedure AtualizarDashboard;
   public
     { Public declarations }
   end;
@@ -105,6 +113,7 @@ procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FreeAndNil(TeclaEnter);
   FreeAndNil(dtmPrincipal);
+  FreeAndNil(dtmGrafico);
 
   if Assigned(oUsuarioLogado) then
      FreeAndNil(oUsuarioLogado);
@@ -149,6 +158,9 @@ begin
   TAcaoAcesso.CriarAcoes(TfrmUsuarioVsAcoes, dtmPrincipal.ConexaoDB);
 
   TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);
+
+  dtmGrafico := TdtmGrafico.Create(Self);
+  AtualizarDashboard;
 
   frmAtualizaDB.Free;
 
@@ -278,6 +290,7 @@ begin
   finally
     if Assigned(form) then
        form.Release;
+       AtualizarDashboard;
   end;
 end;
 
@@ -306,6 +319,14 @@ begin
     if Assigned(form) then
        form.Release;
   end;
+end;
+
+procedure TfrmPrincipal.AtualizarDashboard;
+begin
+  if dtmGrafico.qryProdutoEstoque.Active then
+    dtmGrafico.qryProdutoEstoque.Close;
+
+  dtmGrafico.qryProdutoEstoque.Open;
 end;
 {$endregion}
 
