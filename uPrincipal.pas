@@ -46,6 +46,8 @@ type
     DBChart1: TDBChart;
     Label1: TLabel;
     Series1: TBarSeries;
+    DBChart2: TDBChart;
+    Series2: TPieSeries;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -220,26 +222,17 @@ procedure TfrmPrincipal.Vendapordata1Click(Sender: TObject);
 begin  
   try
     frmSelecionarData := TfrmSelecionarData.Create(Self);
-    
-    if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, frmSelecionarData.Name, dtmPrincipal.ConexaoDB) then
-    begin
-      frmSelecionarData.ShowModal;
+    frmSelecionarData.ShowModal;
 
-      frmRelProVendaPorData := TfrmRelProVendaPorData.Create(Self);
+    frmRelProVendaPorData := TfrmRelProVendaPorData.Create(Self);
       frmRelProVendaPorData.qryVendas.Close;
       frmRelProVendaPorData.qryVendas.ParamByName('dataInicial').AsDate := frmSelecionarData.edtDataInicial.Date;
       frmRelProVendaPorData.qryVendas.ParamByName('dataFinal').AsDate := frmSelecionarData.edtDataFinal.Date;
       frmRelProVendaPorData.qryVendas.Open;
       frmRelProVendaPorData.relatorio.PreviewModal;
-    end
-    else begin
-       MessageDlg('Usuário: ' +oUsuarioLogado.nome+ ' não tem permissão de acesso!', mtWarning, [mbOK], 0);
-    end;
   finally
-    if Assigned(frmSelecionarData) then
-      frmSelecionarData.Release;
-    if Assigned(frmRelProVendaPorData) then
-      frmRelProVendaPorData.Release;
+    frmSelecionarData.Release;
+    frmRelProVendaPorData.Release;
   end;
 end;
 
@@ -326,7 +319,11 @@ begin
   if dtmGrafico.qryProdutoEstoque.Active then
     dtmGrafico.qryProdutoEstoque.Close;
 
+  if dtmGrafico.qryVendaValorPorCliente.Active then
+    dtmGrafico.qryVendaValorPorCliente.Close;
+
   dtmGrafico.qryProdutoEstoque.Open;
+  dtmGrafico.qryVendaValorPorCliente.Open;
 end;
 {$endregion}
 

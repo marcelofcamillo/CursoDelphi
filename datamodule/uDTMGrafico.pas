@@ -10,6 +10,9 @@ type
   TdtmGrafico = class(TDataModule)
     dtsProdutoEstoque: TDataSource;
     qryProdutoEstoque: TZQuery;
+    qryVendaValorPorCliente: TZQuery;
+    qryVendaValorPorClienteLabel: TWideStringField;
+    qryVendaValorPorClienteValue: TFloatField;
   private
     { Private declarations }
   public

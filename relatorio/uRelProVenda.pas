@@ -15,7 +15,7 @@ type
     RLLabel1: TRLLabel;
     RLDraw1: TRLDraw;
     RLPDFFilter1: TRLPDFFilter;
-    QryVendas: TZQuery;
+    qryVendas: TZQuery;
     dtsVendas: TDataSource;
     Rodape: TRLBand;
     RLSystemInfo3: TRLSystemInfo;
@@ -33,21 +33,21 @@ type
     RegistrosDB: TRLBand;
     RLDBText2: TRLDBText;
     RLDBText3: TRLDBText;
-    QryVendasvendaId: TIntegerField;
-    QryVendasclienteId: TIntegerField;
-    QryVendasnome: TWideStringField;
-    QryVendasdataVenda: TDateTimeField;
-    QryVendastotalVenda: TFloatField;
+    qryVendasvendaId: TIntegerField;
+    qryVendasclienteId: TIntegerField;
+    qryVendasnome: TWideStringField;
+    qryVendasdataVenda: TDateTimeField;
+    qryVendastotalVenda: TFloatField;
     RLBand4: TRLBand;
     RLDBResult1: TRLDBResult;
     RLLabel6: TRLLabel;
     dtsVendasItens: TDataSource;
-    QryVendaItens: TZQuery;
-    QryVendaItensvendaId: TIntegerField;
-    QryVendaItensprodutoId: TIntegerField;
-    QryVendaItensquantidade: TFloatField;
-    QryVendaItensvalorUnitario: TFloatField;
-    QryVendaItenstotalProduto: TFloatField;
+    qryVendaItens: TZQuery;
+    qryVendaItensvendaId: TIntegerField;
+    qryVendaItensprodutoId: TIntegerField;
+    qryVendaItensquantidade: TFloatField;
+    qryVendaItensvalorUnitario: TFloatField;
+    qryVendaItenstotalProduto: TFloatField;
     RLLabel5: TRLLabel;
     RLLabel7: TRLLabel;
     RLSubDetail1: TRLSubDetail;
@@ -56,7 +56,7 @@ type
     RLBand1: TRLBand;
     RLDBText1: TRLDBText;
     RLDBText4: TRLDBText;
-    QryVendaItensNome: TWideStringField;
+    qryVendaItensNome: TWideStringField;
     RLLabel9: TRLLabel;
     RLDBText6: TRLDBText;
     RLDBText7: TRLDBText;
@@ -66,8 +66,6 @@ type
     RLLabel12: TRLLabel;
     RLDraw3: TRLDraw;
     RLDraw4: TRLDraw;
-    RLDBText9: TRLDBText;
-    RLLabel13: TRLLabel;
     procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }

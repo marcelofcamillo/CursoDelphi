@@ -27,8 +27,6 @@ object frmPrincipal: TfrmPrincipal
       item
         Width = 150
       end>
-    ExplicitTop = 182
-    ExplicitWidth = 447
   end
   object gridPanel: TGridPanel
     Left = 0
@@ -48,6 +46,11 @@ object frmPrincipal: TfrmPrincipal
         Column = 0
         Control = DBChart1
         Row = 0
+      end
+      item
+        Column = 1
+        Control = DBChart2
+        Row = 0
       end>
     RowCollection = <
       item
@@ -57,10 +60,6 @@ object frmPrincipal: TfrmPrincipal
         Value = 50.000000000000000000
       end>
     TabOrder = 1
-    ExplicitLeft = 448
-    ExplicitTop = 128
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object DBChart1: TDBChart
       Left = 1
       Top = 1
@@ -70,10 +69,6 @@ object frmPrincipal: TfrmPrincipal
         'Produto em Estoque')
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 288
-      ExplicitTop = 80
-      ExplicitWidth = 400
-      ExplicitHeight = 250
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object Series1: TBarSeries
@@ -89,6 +84,74 @@ object frmPrincipal: TfrmPrincipal
         YValues.ValueSource = 'Value'
       end
     end
+    object DBChart2: TDBChart
+      Left = 457
+      Top = 1
+      Width = 456
+      Height = 202
+      Title.Text.Strings = (
+        'Valor de Venda por Cliente na '#218'ltima Semana')
+      Legend.TextStyle = ltsXAndText
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      Align = alClient
+      TabOrder = 1
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series2: TPieSeries
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        Marks.Style = smsPercent
+        Marks.Callout.Length = 20
+        DataSource = dtmGrafico.qryVendaValorPorCliente
+        Title = 'ValorDeVendaPorCliente'
+        ValueFormat = '#,##0.00'
+        XLabelsSource = 'Label'
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
+      end
+    end
   end
   object Panel1: TPanel
     Left = 0
@@ -97,9 +160,6 @@ object frmPrincipal: TfrmPrincipal
     Height = 41
     Align = alTop
     TabOrder = 2
-    ExplicitLeft = 584
-    ExplicitTop = 32
-    ExplicitWidth = 185
     object Label1: TLabel
       Left = 11
       Top = 7
