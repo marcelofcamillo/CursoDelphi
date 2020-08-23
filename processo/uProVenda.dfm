@@ -2,6 +2,7 @@ inherited frmProVenda: TfrmProVenda
   Caption = 'Pedido de Venda'
   ClientHeight = 520
   ClientWidth = 814
+  ExplicitTop = -98
   ExplicitWidth = 820
   ExplicitHeight = 549
   PixelsPerInch = 96
@@ -13,6 +14,8 @@ inherited frmProVenda: TfrmProVenda
     ExplicitWidth = 814
     ExplicitHeight = 475
     inherited tabListagem: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 806
       ExplicitHeight = 447
       inherited pnlListagemTopo: TPanel
@@ -25,6 +28,8 @@ inherited frmProVenda: TfrmProVenda
       end
     end
     inherited tabManutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 806
       ExplicitHeight = 447
       object Label4: TLabel

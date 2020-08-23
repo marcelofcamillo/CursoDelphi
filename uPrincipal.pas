@@ -42,7 +42,7 @@ type
     N6: TMenuItem;
     UsuriosvsAes1: TMenuItem;
     gridPanel: TGridPanel;
-    Panel1: TPanel;
+    pnlDashboard: TPanel;
     DBChart1: TDBChart;
     Label1: TLabel;
     Series1: TBarSeries;
@@ -50,6 +50,9 @@ type
     Series2: TPieSeries;
     DBChart3: TDBChart;
     PieSeries1: TPieSeries;
+    DBChart4: TDBChart;
+    Series3: TFastLineSeries;
+    tmrAtualizacaoDashboard: TTimer;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -68,6 +71,8 @@ type
     procedure Alterarsenha1Click(Sender: TObject);
     procedure AcaodeAcesso1Click(Sender: TObject);
     procedure UsuriosvsAes1Click(Sender: TObject);
+    procedure pnlDashboardClick(Sender: TObject);
+    procedure tmrAtualizacaoDashboardTimer(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -195,6 +200,12 @@ begin
   //Close;
   Application.Terminate;
 end;
+
+procedure TfrmPrincipal.pnlDashboardClick(Sender: TObject);
+begin
+  AtualizarDashboard;
+end;
+
 procedure TfrmPrincipal.Produto1Click(Sender: TObject);
 begin
   CriarForm(TfrmCadProduto);
@@ -208,6 +219,11 @@ end;
 procedure TfrmPrincipal.ProdutosporCategoria1Click(Sender: TObject);
 begin
   CriarRelatorio(TfrmRelCadProdutoComGrupoCategoria);
+end;
+
+procedure TfrmPrincipal.tmrAtualizacaoDashboardTimer(Sender: TObject);
+begin
+  AtualizarDashboard;
 end;
 
 procedure TfrmPrincipal.Usurios1Click(Sender: TObject);
@@ -274,6 +290,7 @@ procedure TfrmPrincipal.CriarForm(aNomeForm: TFormClass);
 var form: TForm;
 begin
   try
+    tmrAtualizacaoDashboard.Enabled := false;
     form := aNomeForm.Create(Application);
     if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name, dtmPrincipal.ConexaoDB) then
     begin
@@ -286,6 +303,8 @@ begin
     if Assigned(form) then
        form.Release;
        AtualizarDashboard;
+
+    tmrAtualizacaoDashboard.Enabled := true;
   end;
 end;
 
@@ -295,6 +314,7 @@ var form: TForm;
     i: Integer;
 begin
   try
+    tmrAtualizacaoDashboard.Enabled := false;
     form := aNomeForm.Create(Application);
     if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name,DtmPrincipal.ConexaoDB) then
     begin
@@ -313,19 +333,35 @@ begin
   finally
     if Assigned(form) then
        form.Release;
+
+    tmrAtualizacaoDashboard.Enabled := true;
   end;
 end;
 
 procedure TfrmPrincipal.AtualizarDashboard;
 begin
-  if dtmGrafico.qryProdutoEstoque.Active then
-    dtmGrafico.qryProdutoEstoque.Close;
+  try
+    Screen.Cursor := crSQLWait;
 
-  if dtmGrafico.qryVendaValorPorCliente.Active then
-    dtmGrafico.qryVendaValorPorCliente.Close;
+    if dtmGrafico.qryProdutoEstoque.Active then
+      dtmGrafico.qryProdutoEstoque.Close;
 
-  dtmGrafico.qryProdutoEstoque.Open;
-  dtmGrafico.qryVendaValorPorCliente.Open;
+    if dtmGrafico.qryVendaValorPorCliente.Active then
+      dtmGrafico.qryVendaValorPorCliente.Close;
+
+    if dtmGrafico.qryVendasUltimaSemana.Active then
+      dtmGrafico.qryVendasUltimaSemana.Close;
+
+    if dtmGrafico.qry10ProdutosMaisVendidos.Active then
+      dtmGrafico.qry10ProdutosMaisVendidos.Close;
+
+    dtmGrafico.qryProdutoEstoque.Open;
+    dtmGrafico.qryVendaValorPorCliente.Open;
+    dtmGrafico.qryVendasUltimaSemana.Open;
+    dtmGrafico.qry10ProdutosMaisVendidos.Open;
+  finally
+    Screen.Cursor := crDefault;
+  end;
 end;
 {$endregion}
 

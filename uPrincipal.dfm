@@ -56,6 +56,11 @@ object frmPrincipal: TfrmPrincipal
         Column = 0
         Control = DBChart3
         Row = 1
+      end
+      item
+        Column = 1
+        Control = DBChart4
+        Row = 1
       end>
     RowCollection = <
       item
@@ -103,8 +108,6 @@ object frmPrincipal: TfrmPrincipal
       View3DOptions.Rotation = 360
       Align = alClient
       TabOrder = 1
-      ExplicitLeft = 463
-      ExplicitTop = 6
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object Series2: TPieSeries
@@ -174,8 +177,6 @@ object frmPrincipal: TfrmPrincipal
       View3DOptions.Rotation = 360
       Align = alClient
       TabOrder = 2
-      ExplicitLeft = 449
-      ExplicitTop = 187
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object PieSeries1: TPieSeries
@@ -231,14 +232,38 @@ object frmPrincipal: TfrmPrincipal
         OtherSlice.Legend.Visible = False
       end
     end
+    object DBChart4: TDBChart
+      Left = 457
+      Top = 203
+      Width = 456
+      Height = 203
+      Title.Text.Strings = (
+        'Vendas da '#218'ltima Semana')
+      Align = alClient
+      TabOrder = 3
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series3: TFastLineSeries
+        DataSource = dtmGrafico.qryVendasUltimaSemana
+        Title = 'VendasUltimaSemana'
+        XLabelsSource = 'Label'
+        LinePen.Color = 10708548
+        XValues.Name = 'X'
+        XValues.Order = loAscending
+        YValues.Name = 'Y'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+      end
+    end
   end
-  object Panel1: TPanel
+  object pnlDashboard: TPanel
     Left = 0
     Top = 0
     Width = 914
     Height = 41
     Align = alTop
     TabOrder = 2
+    OnClick = pnlDashboardClick
     object Label1: TLabel
       Left = 11
       Top = 7
@@ -343,5 +368,11 @@ object frmPrincipal: TfrmPrincipal
         OnClick = Vendapordata1Click
       end
     end
+  end
+  object tmrAtualizacaoDashboard: TTimer
+    Interval = 10000
+    OnTimer = tmrAtualizacaoDashboardTimer
+    Left = 784
+    Top = 8
   end
 end

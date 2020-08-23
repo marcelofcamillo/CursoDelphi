@@ -3,7 +3,7 @@ object frmRelProVenda: TfrmRelProVenda
   Top = 0
   Caption = 'Relat'#243'rio de Venda'
   ClientHeight = 749
-  ClientWidth = 794
+  ClientWidth = 825
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -138,7 +138,7 @@ object frmRelProVenda: TfrmRelProVenda
         ParentColor = False
         Transparent = False
         object RLDBText5: TRLDBText
-          Left = 59
+          Left = 61
           Top = 3
           Width = 55
           Height = 16
@@ -302,9 +302,9 @@ object frmRelProVenda: TfrmRelProVenda
           Width = 718
           Height = 32
           object RLDBText1: TRLDBText
-            Left = 12
+            Left = 9
             Top = 0
-            Width = 54
+            Width = 57
             Height = 16
             Alignment = taRightJustify
             DataField = 'produtoId'
@@ -457,11 +457,12 @@ object frmRelProVenda: TfrmRelProVenda
       'ortes Inform'#225'tica'
     FileName = 'C:\Users\VIRTUAL\Documents\Teste.pdf'
     DisplayName = 'Documento PDF'
-    Left = 469
-    Top = 8
+    Left = 88
+    Top = 320
   end
-  object qryVendas: TZQuery
+  object QryVendas: TZQuery
     Connection = dtmPrincipal.ConexaoDB
+    Active = True
     SQL.Strings = (
       #9'SELECT vendas.vendaId,'
       #9'       vendas.clienteId,'
@@ -483,8 +484,8 @@ object frmRelProVenda: TfrmRelProVenda
         ParamType = ptInput
         Value = 2
       end>
-    Left = 530
-    Top = 8
+    Left = 520
+    Top = 432
     ParamData = <
       item
         DataType = ftInteger
@@ -492,50 +493,51 @@ object frmRelProVenda: TfrmRelProVenda
         ParamType = ptInput
         Value = 2
       end>
-    object qryVendasvendaId: TIntegerField
+    object QryVendasvendaId: TIntegerField
       FieldName = 'vendaId'
       ReadOnly = True
     end
-    object qryVendasclienteId: TIntegerField
+    object QryVendasclienteId: TIntegerField
       FieldName = 'clienteId'
       Required = True
     end
-    object qryVendasnome: TWideStringField
+    object QryVendasnome: TWideStringField
       FieldName = 'nome'
       Size = 60
     end
-    object qryVendasdataVenda: TDateTimeField
+    object QryVendasdataVenda: TDateTimeField
       FieldName = 'dataVenda'
       Required = True
     end
-    object qryVendastotalVenda: TFloatField
+    object QryVendastotalVenda: TFloatField
       FieldName = 'totalVenda'
       Required = True
       DisplayFormat = '#0.00'
     end
   end
   object dtsVendas: TDataSource
-    DataSet = qryVendas
-    Left = 588
-    Top = 8
+    DataSet = QryVendas
+    Left = 600
+    Top = 432
   end
   object RLXLSXFilter1: TRLXLSXFilter
     DisplayName = 'Planilha Excel'
-    Left = 334
-    Top = 8
+    Left = 88
+    Top = 368
   end
   object RLXLSFilter1: TRLXLSFilter
     DisplayName = 'Planilha Excel 97-2013'
-    Left = 403
-    Top = 8
+    Left = 88
+    Top = 424
   end
   object dtsVendasItens: TDataSource
-    DataSet = qryVendaItens
-    Left = 736
-    Top = 8
+    DataSet = QryVendaItens
+    Left = 616
+    Top = 504
   end
-  object qryVendaItens: TZQuery
+  object QryVendaItens: TZQuery
     Connection = dtmPrincipal.ConexaoDB
+    Active = True
     SQL.Strings = (
       'SELECT vendasItens.vendaId,'
       '       vendasItens.produtoId,'
@@ -558,8 +560,8 @@ object frmRelProVenda: TfrmRelProVenda
         ParamType = ptInput
         Value = 2
       end>
-    Left = 656
-    Top = 8
+    Left = 528
+    Top = 504
     ParamData = <
       item
         DataType = ftInteger
@@ -567,27 +569,27 @@ object frmRelProVenda: TfrmRelProVenda
         ParamType = ptInput
         Value = 2
       end>
-    object qryVendaItensvendaId: TIntegerField
+    object QryVendaItensvendaId: TIntegerField
       FieldName = 'vendaId'
       Required = True
     end
-    object qryVendaItensprodutoId: TIntegerField
+    object QryVendaItensprodutoId: TIntegerField
       FieldName = 'produtoId'
       Required = True
     end
-    object qryVendaItensNome: TWideStringField
+    object QryVendaItensNome: TWideStringField
       FieldName = 'Nome'
       Size = 60
     end
-    object qryVendaItensquantidade: TFloatField
+    object QryVendaItensquantidade: TFloatField
       FieldName = 'quantidade'
       Required = True
     end
-    object qryVendaItensvalorUnitario: TFloatField
+    object QryVendaItensvalorUnitario: TFloatField
       FieldName = 'valorUnitario'
       Required = True
     end
-    object qryVendaItenstotalProduto: TFloatField
+    object QryVendaItenstotalProduto: TFloatField
       FieldName = 'totalProduto'
       Required = True
     end

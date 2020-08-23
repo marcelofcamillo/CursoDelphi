@@ -109,7 +109,6 @@ begin
   frmRelProVenda.qryVendaItens.ParamByName('vendaId').AsInteger := oVenda.vendaId;
   frmRelProVenda.qryVendaItens.Open;
 
-
   frmRelProVenda.relatorio.PreviewModal;
   frmRelProVenda.Release;
 

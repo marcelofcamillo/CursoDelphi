@@ -16,6 +16,9 @@ type
     qry10ProdutosMaisVendidos: TZQuery;
     qry10ProdutosMaisVendidosLabel: TWideStringField;
     qry10ProdutosMaisVendidosValue: TFloatField;
+    qryVendasUltimaSemana: TZQuery;
+    qryVendasUltimaSemanaLabel: TDateTimeField;
+    qryVendasUltimaSemanaValue: TFloatField;
   private
     { Private declarations }
   public

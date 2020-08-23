@@ -4,9 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, RLFilters, RLPDFFilter,
-  Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, RLXLSFilter,
-  RLXLSXFilter;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, RLFilters, RLPDFFilter, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, RLXLSFilter, RLXLSXFilter, uDTMConexao;
 
 type
   TfrmRelProVenda = class(TForm)
@@ -15,7 +14,7 @@ type
     RLLabel1: TRLLabel;
     RLDraw1: TRLDraw;
     RLPDFFilter1: TRLPDFFilter;
-    qryVendas: TZQuery;
+    QryVendas: TZQuery;
     dtsVendas: TDataSource;
     Rodape: TRLBand;
     RLSystemInfo3: TRLSystemInfo;
@@ -33,21 +32,21 @@ type
     RegistrosDB: TRLBand;
     RLDBText2: TRLDBText;
     RLDBText3: TRLDBText;
-    qryVendasvendaId: TIntegerField;
-    qryVendasclienteId: TIntegerField;
-    qryVendasnome: TWideStringField;
-    qryVendasdataVenda: TDateTimeField;
-    qryVendastotalVenda: TFloatField;
+    QryVendasvendaId: TIntegerField;
+    QryVendasclienteId: TIntegerField;
+    QryVendasnome: TWideStringField;
+    QryVendasdataVenda: TDateTimeField;
+    QryVendastotalVenda: TFloatField;
     RLBand4: TRLBand;
     RLDBResult1: TRLDBResult;
     RLLabel6: TRLLabel;
     dtsVendasItens: TDataSource;
-    qryVendaItens: TZQuery;
-    qryVendaItensvendaId: TIntegerField;
-    qryVendaItensprodutoId: TIntegerField;
-    qryVendaItensquantidade: TFloatField;
-    qryVendaItensvalorUnitario: TFloatField;
-    qryVendaItenstotalProduto: TFloatField;
+    QryVendaItens: TZQuery;
+    QryVendaItensvendaId: TIntegerField;
+    QryVendaItensprodutoId: TIntegerField;
+    QryVendaItensquantidade: TFloatField;
+    QryVendaItensvalorUnitario: TFloatField;
+    QryVendaItenstotalProduto: TFloatField;
     RLLabel5: TRLLabel;
     RLLabel7: TRLLabel;
     RLSubDetail1: TRLSubDetail;
@@ -56,7 +55,7 @@ type
     RLBand1: TRLBand;
     RLDBText1: TRLDBText;
     RLDBText4: TRLDBText;
-    qryVendaItensNome: TWideStringField;
+    QryVendaItensNome: TWideStringField;
     RLLabel9: TRLLabel;
     RLDBText6: TRLDBText;
     RLDBText7: TRLDBText;
