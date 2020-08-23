@@ -9,6 +9,7 @@ object dtmGrafico: TdtmGrafico
   end
   object qryProdutoEstoque: TZQuery
     Connection = dtmPrincipal.ConexaoDB
+    Active = True
     SQL.Strings = (
       
         'SELECT CONVERT(VARCHAR, produtoId) + '#39' - '#39' + nome AS Label, Quan' +
@@ -19,6 +20,7 @@ object dtmGrafico: TdtmGrafico
   end
   object qryVendaValorPorCliente: TZQuery
     Connection = dtmPrincipal.ConexaoDB
+    Active = True
     SQL.Strings = (
       
         'SELECT CONVERT(VARCHAR, vendas.clienteId) + '#39' - '#39' + clientes.nom' +
@@ -38,6 +40,30 @@ object dtmGrafico: TdtmGrafico
       Size = 93
     end
     object qryVendaValorPorClienteValue: TFloatField
+      FieldName = 'Value'
+      ReadOnly = True
+    end
+  end
+  object qry10ProdutosMaisVendidos: TZQuery
+    Connection = dtmPrincipal.ConexaoDB
+    Active = True
+    SQL.Strings = (
+      
+        'SELECT TOP 10 CONVERT(VARCHAR, vi.produtoId) + '#39' - '#39' + p.nome AS' +
+        ' Label, SUM(vi.totalProduto) AS Value'
+      
+        'FROM vendasItens AS vi INNER JOIN produtos AS p ON p.produtoId =' +
+        ' vi.produtoId GROUP BY vi.produtoId, p.nome'
+      'ORDER BY Label DESC')
+    Params = <>
+    Left = 208
+    Top = 128
+    object qry10ProdutosMaisVendidosLabel: TWideStringField
+      FieldName = 'Label'
+      ReadOnly = True
+      Size = 93
+    end
+    object qry10ProdutosMaisVendidosValue: TFloatField
       FieldName = 'Value'
       ReadOnly = True
     end

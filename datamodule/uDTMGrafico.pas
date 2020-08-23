@@ -13,6 +13,9 @@ type
     qryVendaValorPorCliente: TZQuery;
     qryVendaValorPorClienteLabel: TWideStringField;
     qryVendaValorPorClienteValue: TFloatField;
+    qry10ProdutosMaisVendidos: TZQuery;
+    qry10ProdutosMaisVendidosLabel: TWideStringField;
+    qry10ProdutosMaisVendidosValue: TFloatField;
   private
     { Private declarations }
   public

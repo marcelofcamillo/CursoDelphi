@@ -51,6 +51,11 @@ object frmPrincipal: TfrmPrincipal
         Column = 1
         Control = DBChart2
         Row = 0
+      end
+      item
+        Column = 0
+        Control = DBChart3
+        Row = 1
       end>
     RowCollection = <
       item
@@ -91,13 +96,15 @@ object frmPrincipal: TfrmPrincipal
       Height = 202
       Title.Text.Strings = (
         'Valor de Venda por Cliente na '#218'ltima Semana')
-      Legend.TextStyle = ltsXAndText
+      Legend.TextStyle = ltsLeftPercent
       View3DOptions.Elevation = 315
       View3DOptions.Orthogonal = False
       View3DOptions.Perspective = 0
       View3DOptions.Rotation = 360
       Align = alClient
       TabOrder = 1
+      ExplicitLeft = 463
+      ExplicitTop = 6
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object Series2: TPieSeries
@@ -123,10 +130,82 @@ object frmPrincipal: TfrmPrincipal
         Marks.Font.Style = [fsBold, fsItalic]
         Marks.Frame.Color = 33023
         Marks.RoundSize = 14
+        Marks.Visible = False
         Marks.Style = smsPercent
         Marks.Callout.Length = 20
         DataSource = dtmGrafico.qryVendaValorPorCliente
         Title = 'ValorDeVendaPorCliente'
+        ValueFormat = '#,##0.00'
+        XLabelsSource = 'Label'
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
+      end
+    end
+    object DBChart3: TDBChart
+      Left = 1
+      Top = 203
+      Width = 456
+      Height = 203
+      Title.Text.Strings = (
+        '10 Produtos Mais Vendidos')
+      Legend.TextStyle = ltsLeftPercent
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      Align = alClient
+      TabOrder = 2
+      ExplicitLeft = 449
+      ExplicitTop = 187
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object PieSeries1: TPieSeries
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        Marks.Visible = False
+        Marks.Style = smsPercent
+        Marks.Callout.Length = 20
+        DataSource = dtmGrafico.qry10ProdutosMaisVendidos
+        Title = '10ProdutosMaisVendidos'
         ValueFormat = '#,##0.00'
         XLabelsSource = 'Label'
         XValues.Order = loAscending

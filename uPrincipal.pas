@@ -48,6 +48,8 @@ type
     Series1: TBarSeries;
     DBChart2: TDBChart;
     Series2: TPieSeries;
+    DBChart3: TDBChart;
+    PieSeries1: TPieSeries;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
