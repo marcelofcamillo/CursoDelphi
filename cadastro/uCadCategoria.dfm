@@ -64,7 +64,9 @@ inherited frmCadCategoria: TfrmCadCategoria
   end
   inherited qryListagem: TZQuery
     SQL.Strings = (
-      'SELECT categoriaId, descricao FROM categorias'
+      'SELECT categoriaId,'
+      '       descricao'
+      'FROM categorias'
       '             ')
     object qryListagemcategoriaId: TIntegerField
       DisplayLabel = 'C'#243'digo'

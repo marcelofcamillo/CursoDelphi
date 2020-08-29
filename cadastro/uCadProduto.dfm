@@ -142,58 +142,69 @@ inherited frmCadProduto: TfrmCadProduto
     end
   end
   inherited qryListagem: TZQuery
-    Active = True
     SQL.Strings = (
-      
-        'SELECT p.produtoId, p.nome, p.descricao, p.valor, p.quantidade, ' +
-        'p.categoriaId, c.descricao as descricaoCategoria'
-      
-        'FROM produtos as p LEFT JOIN categorias as c on c.categoriaId = ' +
-        'p.categoriaId')
+      'SELECT p.produtoId,'
+      '       p.nome,'
+      '       p.descricao,'
+      '       p.valor,'
+      '       p.quantidade,'
+      '       p.categoriaId,'
+      '       c.descricao AS descricaoCategoria'
+      'FROM produtos AS p'
+      'LEFT JOIN categorias AS c ON c.categoriaId = p.categoriaId')
     object qryListagemprodutoId: TIntegerField
       DisplayLabel = 'C'#243'digo'
       DisplayWidth = 10
       FieldName = 'produtoId'
+      Origin = 'p'
       ReadOnly = True
     end
     object qryListagemnome: TWideStringField
       DisplayLabel = 'Nome'
       DisplayWidth = 40
       FieldName = 'nome'
+      Origin = 'p'
       Size = 60
     end
     object qryListagemdescricao: TWideStringField
       DisplayLabel = 'Descri'#231#227'o'
       DisplayWidth = 255
       FieldName = 'descricao'
+      Origin = 'p'
       Size = 255
     end
     object qryListagemvalor: TFloatField
       DisplayLabel = 'Valor'
       DisplayWidth = 10
       FieldName = 'valor'
+      Origin = 'p'
     end
     object qryListagemquantidade: TFloatField
       DisplayLabel = 'Quantidade'
       DisplayWidth = 10
       FieldName = 'quantidade'
+      Origin = 'p'
     end
     object qryListagemcategoriaId: TIntegerField
       DisplayLabel = 'C'#243'd. Categoria'
       DisplayWidth = 10
       FieldName = 'categoriaId'
+      Origin = 'p'
     end
     object qryListagemdescricaoCategoria: TWideStringField
       DisplayLabel = 'Descri'#231#227'o Categoria'
       DisplayWidth = 30
       FieldName = 'descricaoCategoria'
+      Origin = 'c.descricao'
       Size = 30
     end
   end
   object qryCategoria: TZQuery
     Connection = dtmPrincipal.ConexaoDB
     SQL.Strings = (
-      'SELECT categoriaId, descricao FROM categorias')
+      'SELECT categoriaId,'
+      '       descricao'
+      'FROM categorias')
     Params = <>
     Left = 468
     Top = 32

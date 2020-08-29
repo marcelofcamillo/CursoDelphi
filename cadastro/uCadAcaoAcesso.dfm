@@ -5,12 +5,16 @@ inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
   inherited pgcPrincipal: TPageControl
     ActivePage = tabManutencao
     inherited tabListagem: TTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 726
+      ExplicitHeight = 375
     end
     inherited tabManutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 726
+      ExplicitHeight = 375
       object edtDescricao: TLabeledEdit
         Tag = 2
         Left = 12
@@ -57,7 +61,10 @@ inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
   end
   inherited qryListagem: TZQuery
     SQL.Strings = (
-      'SELECT acaoAcessoId, descricao, chave FROM acaoAcesso')
+      'SELECT acaoAcessoId,'
+      '       descricao,'
+      '       chave'
+      'FROM acaoAcesso')
     object qryListagemacaoAcessoId: TIntegerField
       DisplayLabel = 'C'#243'digo'
       DisplayWidth = 10

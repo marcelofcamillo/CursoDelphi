@@ -12,6 +12,8 @@ inherited frmCadUsuario: TfrmCadUsuario
     ExplicitWidth = 691
     ExplicitHeight = 268
     inherited tabListagem: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 683
       ExplicitHeight = 240
       inherited pnlListagemTopo: TPanel
@@ -40,6 +42,8 @@ inherited frmCadUsuario: TfrmCadUsuario
       end
     end
     inherited tabManutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 683
       ExplicitHeight = 240
       object edtUsuarioId: TLabeledEdit
@@ -98,7 +102,10 @@ inherited frmCadUsuario: TfrmCadUsuario
   end
   inherited qryListagem: TZQuery
     SQL.Strings = (
-      'SELECT usuarioId, nome, senha FROM usuarios')
+      'SELECT usuarioId,'
+      '       nome,'
+      '       senha'
+      'FROM usuarios')
     Left = 560
     object qryListagemusuarioId: TIntegerField
       DisplayLabel = 'C'#243'digo'

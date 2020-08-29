@@ -28,6 +28,10 @@ object frmTelaHeranca: TfrmTelaHeranca
     TabOrder = 0
     object tabListagem: TTabSheet
       Caption = 'Listagem'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlListagemTopo: TPanel
         Left = 0
         Top = 0
@@ -87,7 +91,6 @@ object frmTelaHeranca: TfrmTelaHeranca
             0E973B0FA65B36FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           TabOrder = 1
-          Visible = False
           OnClick = btnPesquisarClick
         end
       end
@@ -113,6 +116,10 @@ object frmTelaHeranca: TfrmTelaHeranca
     object tabManutencao: TTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
   end
   object pnlRodape: TPanel

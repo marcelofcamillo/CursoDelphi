@@ -45,6 +45,7 @@ type
     procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
+    SelectOriginal: String;
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
               btnApagar: TBitBtn; navegador: TDBNavigator; pgcPrincipal: TPageControl; flag: Boolean);
     procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: Integer);
@@ -316,12 +317,83 @@ begin
   LimparEdits;
 end;
 procedure TfrmTelaHeranca.btnPesquisarClick(Sender: TObject);
+var i: Integer;
+    TipoCampo: TFieldType;
+    NomeCampo: String;
+    WhereOrAnd: String;
+    CondicaoSQL: String;
 begin
   if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, dtmPrincipal.ConexaoDB) then
   begin
      MessageDlg('Usuário: ' +oUsuarioLogado.nome + ', não tem permissão de acesso!', mtWarning, [mbOK], 0);
      Abort;
   end;
+
+  if mskPesquisar.Text = '' then
+  begin
+    qryListagem.Close;
+    qryListagem.SQL.Clear;
+    qryListagem.SQL.Add(SelectOriginal);
+    qryListagem.Open;
+
+    Abort;
+  end;
+
+  // localiza o tipo do campo
+  for i := 0 to qryListagem.FieldCount-1 do
+  begin
+    if qryListagem.Fields[i].FieldName = IndiceAtual then
+    begin
+      TipoCampo := qryListagem.Fields[i].DataType;
+      if qryListagem.Fields[i].Origin <> '' then
+      begin
+        if Pos('.', qryListagem.Fields[i].Origin) > 0 then
+          NomeCampo := qryListagem.Fields[i].Origin
+        else
+          NomeCampo := qryListagem.Fields[i].Origin + '.' + qryListagem.Fields[i].FieldName
+      end
+      else
+        NomeCampo := qryListagem.Fields[i].FieldName;
+
+      Break;
+    end;
+  end;
+
+  // verifica se irá utilizar o where ou and
+  if Pos('where',LowerCase(SelectOriginal)) > 1 then
+  begin
+    WhereOrAnd := ' and '
+  end
+  else
+  begin
+    WhereOrAnd := ' where ';
+  end;
+
+  if (TipoCampo = ftString) or (TipoCampo = ftWideString) then
+  begin
+     CondicaoSQL := WhereOrAnd + ' ' + NomeCampo + ' LIKE ' + QuotedStr('%' + mskPesquisar.Text+'%');
+  end
+  else if (TipoCampo = ftInteger) or (TipoCampo = ftSmallint) then
+  begin
+     CondicaoSQL := WhereOrAnd + ' ' + NomeCampo + '=' + mskPesquisar.Text
+  end
+  else if (TipoCampo = ftFloat) or (TipoCampo = ftCurrency) then
+  begin
+     CondicaoSQL := WhereOrAnd + ' ' + NomeCampo + '=' + StringReplace(mskPesquisar.Text, ',', '.', [rfReplaceAll]);
+  end
+  else if (TipoCampo = ftDate) or (TipoCampo = ftDateTime) then
+  begin
+     CondicaoSQL := WhereOrAnd + ' ' + NomeCampo + '=' + QuotedStr(mskPesquisar.Text)
+  end;
+
+  qryListagem.Close;
+  qryListagem.SQL.Clear;
+  qryListagem.SQL.Add(SelectOriginal);
+  qryListagem.SQL.Add(CondicaoSQL);
+  qryListagem.Open;
+
+  mskPesquisar.Text := '';
+  mskPesquisar.SetFocus;
 end;
 
 {$endregion}
@@ -349,6 +421,7 @@ begin
   if (qryListagem.SQL.Text <> EmptyStr) then begin
     qryListagem.IndexFieldNames := IndiceAtual;
     ExibirLabelIndice(IndiceAtual, lblIndice);
+    SelectOriginal := qryListagem.SQL.Text;
     qryListagem.Open; // abre a consulta
   end;
 

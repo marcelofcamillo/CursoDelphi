@@ -2,7 +2,6 @@ inherited frmProVenda: TfrmProVenda
   Caption = 'Pedido de Venda'
   ClientHeight = 520
   ClientWidth = 814
-  ExplicitTop = -98
   ExplicitWidth = 820
   ExplicitHeight = 549
   PixelsPerInch = 96
@@ -346,43 +345,48 @@ inherited frmProVenda: TfrmProVenda
     end
   end
   inherited qryListagem: TZQuery
-    Active = True
     SQL.Strings = (
-      
-        'SELECT vendas.vendaId, vendas.clienteId, clientes.nome, vendas.d' +
-        'ataVenda, vendas.totalVenda'
-      
-        'FROM vendas INNER JOIN clientes ON clientes.clienteId = vendas.c' +
-        'lienteId')
+      'SELECT vendas.vendaId,'
+      '       vendas.clienteId,'
+      '       clientes.nome,'
+      '       vendas.dataVenda,'
+      '       vendas.totalVenda'
+      'FROM vendas'
+      'INNER JOIN clientes ON clientes.clienteId = vendas.clienteId')
     Left = 328
     Top = 0
     object qryListagemvendaId: TIntegerField
       DisplayLabel = 'N'#186' Venda'
       DisplayWidth = 13
       FieldName = 'vendaId'
+      Origin = 'vendas'
       ReadOnly = True
     end
     object qryListagemclienteId: TIntegerField
       DisplayLabel = 'C'#243'd. Cliente'
       DisplayWidth = 12
       FieldName = 'clienteId'
+      Origin = 'vendas'
       Required = True
     end
     object qryListagemnome: TWideStringField
       DisplayLabel = 'Nome'
       DisplayWidth = 62
       FieldName = 'nome'
+      Origin = 'clientes'
       Size = 60
     end
     object qryListagemdataVenda: TDateTimeField
       DisplayLabel = 'Data Venda'
       DisplayWidth = 21
       FieldName = 'dataVenda'
+      Origin = 'vendas'
     end
     object qryListagemtotalVenda: TFloatField
       DisplayLabel = 'Total Venda'
       DisplayWidth = 15
       FieldName = 'totalVenda'
+      Origin = 'vendas'
     end
   end
   inherited dtsListagem: TDataSource

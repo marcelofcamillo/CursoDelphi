@@ -194,9 +194,17 @@ inherited frmCadCliente: TfrmCadCliente
   end
   inherited qryListagem: TZQuery
     SQL.Strings = (
-      
-        'SELECT clienteId, nome, endereco, cidade, bairro, estado, cep, t' +
-        'elefone, email, dataNascimento FROM clientes')
+      'SELECT clienteId,'
+      '       nome,'
+      '       endereco,'
+      '       cidade,'
+      '       bairro,'
+      '       estado,'
+      '       cep,'
+      '       telefone,'
+      '       email,'
+      '       dataNascimento'
+      'FROM clientes')
     Left = 608
     object qryListagemclienteId: TIntegerField
       DisplayLabel = 'C'#243'digo'
