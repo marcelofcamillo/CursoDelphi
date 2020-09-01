@@ -209,6 +209,23 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="classes\cFuncao.pas"/>
+        <DCCReference Include="heranca\uTelaHerancaConsulta.pas">
+            <Form>frmTelaHerancaConsulta</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="consulta\uConsultaCategoria.pas">
+            <Form>frmConsultaCategoria</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="consulta\uConsultaCliente.pas">
+            <Form>frmConsultaCliente</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="consulta\uConsultaProduto.pas">
+            <Form>frmConsultaProduto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_Vendas\default.txaPackage"/>
         <None Include="ModelSupport_Vendas\default.txvpck"/>
         <BuildConfiguration Include="Release">

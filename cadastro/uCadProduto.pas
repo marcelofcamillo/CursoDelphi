@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB, ZAbstractRODataset,
   ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls, RxToolEdit, RxCurrEdit, uDTMConexao, cCadProduto, uEnum;
+  Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls, RxToolEdit, RxCurrEdit, uDTMConexao, cCadProduto,
+  uEnum, uConsultaCategoria, uCadCategoria, cFuncao;
 
 type
   TfrmCadProduto = class(TfrmTelaHeranca)
@@ -31,11 +32,15 @@ type
     qryCategoriacategoriaId: TIntegerField;
     qryCategoriadescricao: TWideStringField;
     edtDescricao: TMemo;
+    btnIncluirCategoria: TSpeedButton;
+    btnPesquisarCategoria: TSpeedButton;
     procedure btnAlterarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnIncluirCategoriaClick(Sender: TObject);
+    procedure btnPesquisarCategoriaClick(Sender: TObject);
   private
     { Private declarations }
     oProduto: TProduto;
@@ -50,6 +55,8 @@ var
 
 implementation
 
+uses uPrincipal;
+
 {$R *.dfm}
 
 { TfrmCadProduto }
@@ -57,7 +64,7 @@ implementation
 {$region 'OVERRIDE'}
 function TfrmCadProduto.Apagar: Boolean;
 begin
-  if oProduto.Selecionar(QryListagem.FieldByName('produtoId').AsInteger) then begin
+  if oProduto.Selecionar(qryListagem.FieldByName('produtoId').AsInteger) then begin
      Result := oProduto.Apagar;
   end;
 end;
@@ -80,6 +87,13 @@ begin
   else if EstadoDoCadastro = ecAlterar then
      Result := oProduto.Atualizar;
 end;
+procedure TfrmCadProduto.btnIncluirCategoriaClick(Sender: TObject);
+begin
+  inherited;
+  TFuncao.CriarForm(TfrmCadCategoria, oUsuarioLogado, DtmPrincipal.ConexaoDB);
+  qryCategoria.Refresh;
+end;
+
 {$endregion}
 
 {$region 'EVENTS'}
@@ -105,6 +119,23 @@ procedure TfrmCadProduto.btnNovoClick(Sender: TObject);
 begin
   inherited;
   edtNome.SetFocus;
+end;
+
+procedure TfrmCadProduto.btnPesquisarCategoriaClick(Sender: TObject);
+begin
+  inherited;
+
+  frmConsultaCategoria := TfrmConsultaCategoria.Create(Self);
+
+  if lkpCategoria.KeyValue <> Null then
+     frmConsultaCategoria.aIniciarPesquisaId := lkpCategoria.KeyValue;
+
+  frmConsultaCategoria.ShowModal;
+
+  if frmConsultaCategoria.aRetornarIdSelecionado <> Unassigned then  // não atribuído
+     lkpCategoria.KeyValue := frmConsultaCategoria.aRetornarIdSelecionado;
+
+  frmConsultaCategoria.Release;
 end;
 
 procedure TfrmCadProduto.FormClose(Sender: TObject; var Action: TCloseAction);

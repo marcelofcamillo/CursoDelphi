@@ -1,35 +1,35 @@
 inherited frmProVenda: TfrmProVenda
   Caption = 'Pedido de Venda'
   ClientHeight = 520
-  ClientWidth = 814
-  ExplicitWidth = 820
+  ClientWidth = 815
+  ExplicitWidth = 821
   ExplicitHeight = 549
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    Width = 814
+    Width = 815
     Height = 475
     ActivePage = tabManutencao
-    ExplicitWidth = 814
+    ExplicitWidth = 815
     ExplicitHeight = 475
     inherited tabListagem: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 806
+      ExplicitWidth = 807
       ExplicitHeight = 447
       inherited pnlListagemTopo: TPanel
-        Width = 806
-        ExplicitWidth = 806
+        Width = 807
+        ExplicitWidth = 807
       end
       inherited grdListagem: TDBGrid
-        Width = 806
+        Width = 807
         Height = 388
       end
     end
     inherited tabManutencao: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 806
+      ExplicitWidth = 807
       ExplicitHeight = 447
       object Label4: TLabel
         Left = 152
@@ -43,7 +43,78 @@ inherited frmProVenda: TfrmProVenda
         Top = 10
         Width = 71
         Height = 13
+        Anchors = [akLeft, akTop, akRight]
         Caption = 'Data da venda'
+      end
+      object btnIncluirCliente: TSpeedButton
+        Left = 564
+        Top = 25
+        Width = 23
+        Height = 22
+        Anchors = [akLeft, akTop, akRight]
+        Glyph.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+          FF00FF0A6B0A0A6B0A0A6B0A0A6B0AFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+          FFFF00FFFF00FFFF00FFFF00FFFF00FFB25D130A6B0A42D37331B85A0A6B0AA8
+          4E0FA54A0EA4480DA1440DA0420C9F3F0C9D3E0BFF00FFFF00FFFF00FFFF00FF
+          B561140A6B0A78F3A440D1710A6B0AFBF0DEFBEFDAFBEDD5FBEBD1FBE9CDFBE7
+          C89E400BFF00FFFF00FF0A6B0A0A6B0A0A6B0A0A6B0A78F3A444D5740A6B0A0A
+          6B0A0A6B0A0A6B0AFCEDD6FBEBD1FBEACEA1430CFF00FFFF00FF0A6B0A78F3A4
+          53E4844FE1804CDD7C48D97845D67541D27231B85A0A6B0AFBEFDBFCEDD6FBEB
+          D1A3470DFF00FFFF00FF0A6B0A78F3A478F3A478F3A478F3A44DDE7D78F3A478
+          F3A442D3730A6B0AFCF1E0FBEFDBFBEDD7A64B0EFF00FFFF00FF0A6B0A0A6B0A
+          0A6B0A0A6B0A78F3A450E2810A6B0A0A6B0A0A6B0A0A6B0AFCF4E4FBF1E1FCEF
+          DCA94F0FFF00FFFF00FFFF00FFFF00FFC375190A6B0A78F3A454E5850A6B0AFC
+          F9F5FCF7F1FCF7EEFCF5E9FBF3E4FCF2E2AC5110FF00FFFF00FFFF00FFFF00FF
+          C579190A6B0A78F3A478F3A40A6B0AFCFAF7FCF9F5FCF7F2FCF7EEFBF6E9FBF3
+          E5AD5611FF00FFFF00FFFF00FFFF00FFC77C1A0A6B0A0A6B0A0A6B0A0A6B0AFC
+          FBFBFCFAF8FCF9F5FBF8F2FCF7EEFBF6EAB05A12FF00FFFF00FFFF00FFFF00FF
+          C97F1CFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFAFCFBF8FCF9F6FCF8F2FCF7
+          EFB35E13FF00FFFF00FFFF00FFFF00FFCC821CFCFCFCFCFCFCFCFCFCFCFCFCFC
+          FCFCFCFCFCFCFCFAFCFBF9FCFAF6FCF8F3B66214FF00FFFF00FFFF00FFFF00FF
+          CE851DFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFBFBFCFBF9FCFA
+          F7B96615FF00FFFF00FFFF00FFFF00FFCF861DFCFCFCFCFCFCFCFCFCFCFCFCFC
+          FCFCFCFCFCFCFCFCFCFCFCFCFCFBFCFBF8BC6A16FF00FFFF00FFFF00FFFF00FF
+          CF871DCF871DCE861DCC831CCC821CCA801BC87D1BC67A1AC47719C37419C172
+          17BF6F17FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+          00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+        OnClick = btnIncluirClienteClick
+      end
+      object btnPesquisarCliente: TSpeedButton
+        Left = 593
+        Top = 25
+        Width = 23
+        Height = 22
+        Anchors = [akLeft, akTop, akRight]
+        Glyph.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+          FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+          FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+          00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+          FF00FFFF00FFFF00FFFF00FF9B3B0A9B3B0A9B3B0A993B0DFF00FFFF00FFFF00
+          FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF9B3B0AFA
+          EAC2E9B171953B11FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+          FF00FFFF00FFFF00FFFF00FF9B3B0AFAE9C0EAB474953B11FF00FFFF00FFFF00
+          FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF9B3B0AF9
+          E7BFEBB677953B11FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+          FF00FFFF00FFFF00FFC3B6B09B3B0AA54D1E9B3B0A983B0EC3B8B4FF00FFFF00
+          FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFA86441C58355FA
+          DEB1F7D6A5B3724AAC6C4CFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+          FF00FFFF00FFB89787A54E20F6D4A8FBE2B7F6D19DDBAB799A461FBDA79BFF00
+          FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFC5BEBBA0491DDDA876F9E3C2F9
+          DBADF4CB96E9B97FB17047A3542CFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+          FF00FFAE7559B86F40F6D6ACFBE9CDF7D5A4F2C68FEBB879CA905A984D28B68E
+          7AFF00FFFF00FFFF00FFFF00FFFF00FFBDA79B9F4516EBBC84FAE9D1FBE8CBF6
+          D09CEFC187E9B272D49758A7653C9B4419C5BEBBFF00FFFF00FFFF00FFC7C4C3
+          A4532BCD8E5BF5D5AAFBF5E9FAE2BEF3CB95EDBC80E7AD6ADF9C55B8743D924D
+          2BAE7254FF00FFFF00FFFF00FFB3856FAC5E30EFC187FAEEDEFCF9F5F7D6A9F1
+          C58DEBB778E4A862DF994EC179399B582E93411BC0ADA4FF00FFFF00FF9D3E0F
+          9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9A3B0B983B
+          0E973B0FA65B36FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+          00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+        OnClick = btnPesquisarClienteClick
       end
       object edtVendaId: TLabeledEdit
         Tag = 1
@@ -61,7 +132,7 @@ inherited frmProVenda: TfrmProVenda
       object lkpCliente: TDBLookupComboBox
         Left = 152
         Top = 26
-        Width = 464
+        Width = 406
         Height = 21
         KeyField = 'clienteId'
         ListField = 'nome'
@@ -74,23 +145,27 @@ inherited frmProVenda: TfrmProVenda
         Width = 161
         Height = 21
         DialogTitle = 'Selecione a data'
+        Anchors = [akLeft, akTop, akRight]
         NumGlyphs = 2
         TabOrder = 2
       end
       object Panel1: TPanel
         Left = 0
         Top = 53
-        Width = 806
+        Width = 807
         Height = 394
         Align = alBottom
         TabOrder = 3
         object Panel2: TPanel
           Left = 1
           Top = 1
-          Width = 804
+          Width = 805
           Height = 54
           Align = alTop
           TabOrder = 0
+          DesignSize = (
+            805
+            54)
           object Label1: TLabel
             Left = 11
             Top = 6
@@ -103,6 +178,7 @@ inherited frmProVenda: TfrmProVenda
             Top = 6
             Width = 63
             Height = 13
+            Anchors = [akLeft, akTop, akRight]
             Caption = 'Valor unit'#225'rio'
           end
           object Label6: TLabel
@@ -110,6 +186,7 @@ inherited frmProVenda: TfrmProVenda
             Top = 6
             Width = 56
             Height = 13
+            Anchors = [akLeft, akTop, akRight]
             Caption = 'Quantidade'
           end
           object Label7: TLabel
@@ -117,14 +194,85 @@ inherited frmProVenda: TfrmProVenda
             Top = 6
             Width = 80
             Height = 13
+            Anchors = [akLeft, akTop, akRight]
             Caption = 'Total do produto'
             Color = clNone
             ParentColor = False
           end
+          object SpeedButton1: TSpeedButton
+            Left = 255
+            Top = 22
+            Width = 23
+            Height = 22
+            Anchors = [akLeft, akTop, akRight]
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+              FF00FF0A6B0A0A6B0A0A6B0A0A6B0AFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFB25D130A6B0A42D37331B85A0A6B0AA8
+              4E0FA54A0EA4480DA1440DA0420C9F3F0C9D3E0BFF00FFFF00FFFF00FFFF00FF
+              B561140A6B0A78F3A440D1710A6B0AFBF0DEFBEFDAFBEDD5FBEBD1FBE9CDFBE7
+              C89E400BFF00FFFF00FF0A6B0A0A6B0A0A6B0A0A6B0A78F3A444D5740A6B0A0A
+              6B0A0A6B0A0A6B0AFCEDD6FBEBD1FBEACEA1430CFF00FFFF00FF0A6B0A78F3A4
+              53E4844FE1804CDD7C48D97845D67541D27231B85A0A6B0AFBEFDBFCEDD6FBEB
+              D1A3470DFF00FFFF00FF0A6B0A78F3A478F3A478F3A478F3A44DDE7D78F3A478
+              F3A442D3730A6B0AFCF1E0FBEFDBFBEDD7A64B0EFF00FFFF00FF0A6B0A0A6B0A
+              0A6B0A0A6B0A78F3A450E2810A6B0A0A6B0A0A6B0A0A6B0AFCF4E4FBF1E1FCEF
+              DCA94F0FFF00FFFF00FFFF00FFFF00FFC375190A6B0A78F3A454E5850A6B0AFC
+              F9F5FCF7F1FCF7EEFCF5E9FBF3E4FCF2E2AC5110FF00FFFF00FFFF00FFFF00FF
+              C579190A6B0A78F3A478F3A40A6B0AFCFAF7FCF9F5FCF7F2FCF7EEFBF6E9FBF3
+              E5AD5611FF00FFFF00FFFF00FFFF00FFC77C1A0A6B0A0A6B0A0A6B0A0A6B0AFC
+              FBFBFCFAF8FCF9F5FBF8F2FCF7EEFBF6EAB05A12FF00FFFF00FFFF00FFFF00FF
+              C97F1CFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFAFCFBF8FCF9F6FCF8F2FCF7
+              EFB35E13FF00FFFF00FFFF00FFFF00FFCC821CFCFCFCFCFCFCFCFCFCFCFCFCFC
+              FCFCFCFCFCFCFCFAFCFBF9FCFAF6FCF8F3B66214FF00FFFF00FFFF00FFFF00FF
+              CE851DFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFBFBFCFBF9FCFA
+              F7B96615FF00FFFF00FFFF00FFFF00FFCF861DFCFCFCFCFCFCFCFCFCFCFCFCFC
+              FCFCFCFCFCFCFCFCFCFCFCFCFCFBFCFBF8BC6A16FF00FFFF00FFFF00FFFF00FF
+              CF871DCF871DCE861DCC831CCC821CCA801BC87D1BC67A1AC47719C37419C172
+              17BF6F17FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+            OnClick = SpeedButton1Click
+          end
+          object SpeedButton2: TSpeedButton
+            Left = 284
+            Top = 22
+            Width = 23
+            Height = 22
+            Anchors = [akLeft, akTop, akRight]
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FF9B3B0A9B3B0A9B3B0A993B0DFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF9B3B0AFA
+              EAC2E9B171953B11FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FF9B3B0AFAE9C0EAB474953B11FF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF9B3B0AF9
+              E7BFEBB677953B11FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFC3B6B09B3B0AA54D1E9B3B0A983B0EC3B8B4FF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFA86441C58355FA
+              DEB1F7D6A5B3724AAC6C4CFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFB89787A54E20F6D4A8FBE2B7F6D19DDBAB799A461FBDA79BFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFC5BEBBA0491DDDA876F9E3C2F9
+              DBADF4CB96E9B97FB17047A3542CFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFAE7559B86F40F6D6ACFBE9CDF7D5A4F2C68FEBB879CA905A984D28B68E
+              7AFF00FFFF00FFFF00FFFF00FFFF00FFBDA79B9F4516EBBC84FAE9D1FBE8CBF6
+              D09CEFC187E9B272D49758A7653C9B4419C5BEBBFF00FFFF00FFFF00FFC7C4C3
+              A4532BCD8E5BF5D5AAFBF5E9FAE2BEF3CB95EDBC80E7AD6ADF9C55B8743D924D
+              2BAE7254FF00FFFF00FFFF00FFB3856FAC5E30EFC187FAEEDEFCF9F5F7D6A9F1
+              C58DEBB778E4A862DF994EC179399B582E93411BC0ADA4FF00FFFF00FF9D3E0F
+              9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9B3B0A9A3B0B983B
+              0E973B0FA65B36FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+            OnClick = SpeedButton2Click
+          end
           object lkpProduto: TDBLookupComboBox
             Left = 11
             Top = 23
-            Width = 286
+            Width = 238
             Height = 21
             KeyField = 'produtoId'
             ListField = 'nome'
@@ -138,6 +286,7 @@ inherited frmProVenda: TfrmProVenda
             Width = 85
             Height = 21
             DisplayFormat = ' ,0.00;- ,0.00'
+            Anchors = [akLeft, akTop, akRight]
             TabOrder = 1
           end
           object edtQuantidade: TCurrencyEdit
@@ -146,6 +295,7 @@ inherited frmProVenda: TfrmProVenda
             Width = 85
             Height = 21
             DisplayFormat = ' ,0.00;- ,0.00'
+            Anchors = [akLeft, akTop, akRight]
             TabOrder = 2
             OnEnter = edtQuantidadeEnter
             OnExit = edtQuantidadeExit
@@ -155,6 +305,7 @@ inherited frmProVenda: TfrmProVenda
             Top = 21
             Width = 75
             Height = 25
+            Anchors = [akLeft, akTop, akRight]
             Caption = 'A&dicionar'
             Glyph.Data = {
               36030000424D3603000000000000360000002800000010000000100000000100
@@ -193,6 +344,7 @@ inherited frmProVenda: TfrmProVenda
             Height = 21
             TabStop = False
             DisplayFormat = ' ,0.00;- ,0.00'
+            Anchors = [akLeft, akTop, akRight]
             ParentColor = True
             ReadOnly = True
             TabOrder = 3
@@ -202,6 +354,7 @@ inherited frmProVenda: TfrmProVenda
             Top = 21
             Width = 75
             Height = 25
+            Anchors = [akLeft, akTop, akRight]
             Caption = 'Re&mover'
             Glyph.Data = {
               36030000424D3603000000000000360000002800000010000000100000000100
@@ -238,14 +391,14 @@ inherited frmProVenda: TfrmProVenda
         object Panel3: TPanel
           Left = 1
           Top = 55
-          Width = 804
+          Width = 805
           Height = 297
           Align = alClient
           TabOrder = 1
           object dbGridItensVenda: TDBGrid
             Left = 1
             Top = 1
-            Width = 802
+            Width = 803
             Height = 295
             Align = alClient
             DataSource = dtmVendas.dtsItensVenda
@@ -293,15 +446,19 @@ inherited frmProVenda: TfrmProVenda
         object Panel4: TPanel
           Left = 1
           Top = 352
-          Width = 804
+          Width = 805
           Height = 41
           Align = alBottom
           TabOrder = 2
+          DesignSize = (
+            805
+            41)
           object Label2: TLabel
             Left = 574
             Top = 13
             Width = 84
             Height = 13
+            Anchors = [akLeft, akTop, akRight]
             Caption = 'Valor da venda'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -320,6 +477,7 @@ inherited frmProVenda: TfrmProVenda
             Font.Height = -11
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
+            Anchors = [akLeft, akTop, akRight]
             ParentColor = True
             ParentFont = False
             ReadOnly = True
@@ -331,12 +489,12 @@ inherited frmProVenda: TfrmProVenda
   end
   inherited pnlRodape: TPanel
     Top = 475
-    Width = 814
+    Width = 815
     ExplicitTop = 475
-    ExplicitWidth = 814
+    ExplicitWidth = 815
     inherited btnFechar: TBitBtn
-      Left = 723
-      ExplicitLeft = 723
+      Left = 724
+      ExplicitLeft = 724
     end
     inherited btnNavigator: TDBNavigator
       Left = 482

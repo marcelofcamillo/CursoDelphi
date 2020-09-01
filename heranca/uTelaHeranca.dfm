@@ -28,10 +28,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     TabOrder = 0
     object tabListagem: TTabSheet
       Caption = 'Listagem'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pnlListagemTopo: TPanel
         Left = 0
         Top = 0

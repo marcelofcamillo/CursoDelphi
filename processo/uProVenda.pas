@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB, Vcl.Grids, Vcl.DBCtrls,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls, uDTMConexao, uDTMVenda, RxToolEdit, RxCurrEdit,
-  uEnum, cProVenda, uRelProVenda;
+  uEnum, cProVenda, uRelProVenda, uCadCliente, cFuncao, uConsultaCliente, uCadProduto,
+  uConsultaProduto;
 
 type
   TfrmProVenda = class(TfrmTelaHeranca)
@@ -38,6 +39,10 @@ type
     btnAdicionarItem: TBitBtn;
     edtTotalProduto: TCurrencyEdit;
     btnRemoverItem: TBitBtn;
+    btnIncluirCliente: TSpeedButton;
+    btnPesquisarCliente: TSpeedButton;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure dbGridItensVendaKeyDown(Sender: TObject; var Key: Word;
@@ -52,6 +57,11 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure btnRemoverItemClick(Sender: TObject);
     procedure dbGridItensVendaDblClick(Sender: TObject);
+    procedure btnIncluirClienteClick(Sender: TObject);
+    procedure btnPesquisarClienteClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     dtmVendas: TdtmVendas;
@@ -71,6 +81,8 @@ var
   frmProVenda: TfrmProVenda;
 
 implementation
+
+uses uPrincipal;
 
 {$R *.dfm}
 
@@ -127,6 +139,29 @@ begin
     edtQuantidade.Value := 1;
     edtTotalProduto.Value := TotalizarProduto(edtValorUnitario.Value, edtQuantidade.Value);
   end;
+end;
+
+procedure TfrmProVenda.SpeedButton1Click(Sender: TObject);
+begin
+  inherited;
+  TFuncao.CriarForm(TfrmCadProduto, oUsuarioLogado, DtmPrincipal.ConexaoDB);
+  dtmVendas.qryProdutos.Refresh;
+end;
+
+procedure TfrmProVenda.SpeedButton2Click(Sender: TObject);
+begin
+  inherited;
+  frmConsultaProduto := TfrmConsultaProduto.Create(Self);
+
+  if lkpProduto.KeyValue <> Null then
+     frmConsultaProduto.aIniciarPesquisaId := lkpProduto.KeyValue;
+
+  frmConsultaProduto.ShowModal;
+
+  if frmConsultaProduto.aRetornarIdSelecionado <> Unassigned then  // não atribuído
+     lkpProduto.KeyValue := frmConsultaProduto.aRetornarIdSelecionado;
+
+  frmConsultaProduto.Release;
 end;
 
 procedure TfrmProVenda.btnAdicionarItemClick(Sender: TObject);
@@ -203,6 +238,13 @@ begin
   LimparCds;
 end;
 
+procedure TfrmProVenda.btnIncluirClienteClick(Sender: TObject);
+begin
+  inherited;
+  TFuncao.CriarForm(TfrmCadCliente, oUsuarioLogado, DtmPrincipal.ConexaoDB);
+  dtmVendas.qryCliente.Refresh;
+end;
+
 procedure TfrmProVenda.btnNovoClick(Sender: TObject);
 begin
   inherited;
@@ -210,6 +252,22 @@ begin
   edtDataVenda.Date := Date;
   lkpCliente.SetFocus;
   LimparCds;
+end;
+
+procedure TfrmProVenda.btnPesquisarClienteClick(Sender: TObject);
+begin
+  inherited;
+  frmConsultaCliente := TfrmConsultaCliente.Create(Self);
+
+  if lkpCliente.KeyValue <> Null then
+     frmConsultaCliente.aIniciarPesquisaId := lkpCliente.KeyValue;
+
+  frmConsultaCliente.ShowModal;
+
+  if frmConsultaCliente.aRetornarIdSelecionado <> Unassigned then  // não atribuído
+     lkpCliente.KeyValue := frmConsultaCliente.aRetornarIdSelecionado;
+
+  frmConsultaCliente.Release;
 end;
 
 procedure TfrmProVenda.btnRemoverItemClick(Sender: TObject);
@@ -260,6 +318,7 @@ end;
 procedure TfrmProVenda.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
+
   if Assigned(dtmVendas) then
     FreeAndNil(dtmVendas);
 
@@ -276,6 +335,12 @@ begin
 
   IndiceAtual := 'clienteId';
 end;
+procedure TfrmProVenda.FormShow(Sender: TObject);
+begin
+  inherited;
+  // qryProduto.Open; // TIRAR
+end;
+
 {$endregion}
 
 {$region 'FUNÇÕES E PROCEDURES'}

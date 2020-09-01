@@ -3,15 +3,14 @@ unit uPrincipal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
-  uCadCategoria, uCadCliente, uCadProduto, uFrmAtualizaDB, uProVenda, uRelCadCategoria,
-  uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoComGrupoCategoria,
-  uSelecionarData, uRelProVendaPorData, uCadUsuario, uLogin, uAlterarSenha, cUsuarioLogado,
-  Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados, uCadAcaoAcesso, cAcaoAcesso, uDTMGrafico,
-  uTelaHeranca, RLReport, uUsuarioVsAcoes, Vcl.ExtCtrls, VclTee.TeeGDIPlus,
-  Data.DB, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs, VCLTee.Chart,
-  VCLTee.DBChart, Vcl.StdCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter, uCadCategoria, uCadCliente,
+  uCadProduto, uFrmAtualizaDB, uProVenda, uRelCadCategoria, uRelCadCliente, uRelCadClienteFicha,
+  uRelCadProduto, uRelCadProdutoComGrupoCategoria, uSelecionarData, uRelProVendaPorData, uCadUsuario,
+  uLogin, uAlterarSenha, cUsuarioLogado, Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados,
+  uCadAcaoAcesso, cAcaoAcesso, uDTMGrafico, uTelaHeranca, RLReport, uUsuarioVsAcoes, Vcl.ExtCtrls,
+  VclTee.TeeGDIPlus, Data.DB, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs, VCLTee.Chart,
+  VCLTee.DBChart, Vcl.StdCtrls, cFuncao;
 
 type
   TfrmPrincipal = class(TForm)
@@ -77,8 +76,6 @@ type
     { Private declarations }
     TeclaEnter: TMREnter;
     procedure AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
-    procedure CriarForm(aNomeForm: TFormClass);
-    procedure CriarRelatorio(aNomeForm: TFormClass);
     procedure AtualizarDashboard;
   public
     { Public declarations }
@@ -95,27 +92,27 @@ implementation
 {$region 'EVENTS'}
 procedure TfrmPrincipal.Categoria1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadCategoria);
+  TFuncao.CriarForm(TfrmCadCategoria, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.Categorias1Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadCategoria);
+  TFuncao.CriarRelatorio(TfrmRelCadCategoria, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadCliente);
+  TFuncao.CriarForm(TfrmCadCliente, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.Cliente2Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadCliente);
+  TFuncao.CriarRelatorio(TfrmRelCadCliente, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.FichadeClientes1Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadClienteFicha);
+  TFuncao.CriarRelatorio(TfrmRelCadClienteFicha, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -208,17 +205,17 @@ end;
 
 procedure TfrmPrincipal.Produto1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadProduto);
+  TFuncao.CriarForm(TfrmCadProduto, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.Produto2Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadProduto);
+  TFuncao.CriarRelatorio(TfrmRelCadProduto, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.ProdutosporCategoria1Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadProdutoComGrupoCategoria);
+  TFuncao.CriarRelatorio(TfrmRelCadProdutoComGrupoCategoria, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.tmrAtualizacaoDashboardTimer(Sender: TObject);
@@ -228,12 +225,12 @@ end;
 
 procedure TfrmPrincipal.Usurios1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadUsuario);
+  TFuncao.CriarForm(TfrmCadUsuario, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.UsuriosvsAes1Click(Sender: TObject);
 begin
-  CriarForm(TfrmUsuarioVsAcoes);
+  TFuncao.CriarForm(TfrmUsuarioVsAcoes, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.Vendapordata1Click(Sender: TObject);
@@ -256,7 +253,7 @@ end;
 
 procedure TfrmPrincipal.Vendas1Click(Sender: TObject);
 begin
-  CriarForm(TfrmProVenda);
+  TFuncao.CriarForm(TfrmProVenda, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 {$endregion}
@@ -264,12 +261,12 @@ end;
 {$region 'FUNÇÕES E PROCEDURES'}
 procedure TfrmPrincipal.Alterarsenha1Click(Sender: TObject);
 begin
-  CriarForm(TfrmAlterarSenha);
+  TFuncao.CriarForm(TfrmAlterarSenha, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.AcaodeAcesso1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadAcaoAcesso);
+  TFuncao.CriarForm(TfrmCadAcaoAcesso, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
@@ -283,58 +280,6 @@ begin
   finally
     if Assigned(oAtualizarMSSQL) then
        FreeAndNil(oAtualizarMSSQL);
-  end;
-end;
-
-procedure TfrmPrincipal.CriarForm(aNomeForm: TFormClass);
-var form: TForm;
-begin
-  try
-    tmrAtualizacaoDashboard.Enabled := false;
-    form := aNomeForm.Create(Application);
-    if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name, dtmPrincipal.ConexaoDB) then
-    begin
-      form.ShowModal;
-    end
-    else begin
-       MessageDlg('Usuário: ' +oUsuarioLogado.nome+ ' não tem permissão de acesso!', mtWarning, [mbOK], 0);
-    end;
-  finally
-    if Assigned(form) then
-       form.Release;
-       AtualizarDashboard;
-
-    tmrAtualizacaoDashboard.Enabled := true;
-  end;
-end;
-
-procedure TfrmPrincipal.CriarRelatorio(aNomeForm: TFormClass);
-var form: TForm;
-    aRelatorio: TRLReport;
-    i: Integer;
-begin
-  try
-    tmrAtualizacaoDashboard.Enabled := false;
-    form := aNomeForm.Create(Application);
-    if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name,DtmPrincipal.ConexaoDB) then
-    begin
-      for I := 0 to form.ComponentCount-1 do
-      begin
-        if form.Components[i] is TRLReport then
-        begin
-           TRLReport(form.Components[i]).PreviewModal;
-           Break;
-        end;
-      end;
-    end
-    else begin
-       MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso!',mtWarning,[mbOK],0);
-    end;
-  finally
-    if Assigned(form) then
-       form.Release;
-
-    tmrAtualizacaoDashboard.Enabled := true;
   end;
 end;
 

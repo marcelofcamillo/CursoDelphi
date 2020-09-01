@@ -38,7 +38,12 @@ uses
   uCadAcaoAcesso in 'cadastro\uCadAcaoAcesso.pas' {frmCadAcaoAcesso},
   cAcaoAcesso in 'classes\cAcaoAcesso.pas',
   uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes},
-  uDTMGrafico in 'datamodule\uDTMGrafico.pas' {dtmGrafico: TDataModule};
+  uDTMGrafico in 'datamodule\uDTMGrafico.pas' {dtmGrafico: TDataModule},
+  cFuncao in 'classes\cFuncao.pas',
+  uTelaHerancaConsulta in 'heranca\uTelaHerancaConsulta.pas' {frmTelaHerancaConsulta},
+  uConsultaCategoria in 'consulta\uConsultaCategoria.pas' {frmConsultaCategoria},
+  uConsultaCliente in 'consulta\uConsultaCliente.pas' {frmConsultaCliente},
+  uConsultaProduto in 'consulta\uConsultaProduto.pas' {frmConsultaProduto};
 
 {$R *.res}
 
@@ -46,5 +51,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmConsultaCliente, frmConsultaCliente);
+  Application.CreateForm(TfrmConsultaProduto, frmConsultaProduto);
   Application.Run;
 end.
